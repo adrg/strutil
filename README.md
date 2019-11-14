@@ -25,6 +25,8 @@ fmt.Printf("%d, %.2f\n", distance, similarity)
 
 // Output: 4, 0.43
 ```
+More information and additional examples can be found on
+[GoDoc](https://godoc.org/github.com/adrg/strutil#Levenshtein).
 
 #### Jaro
 
@@ -35,6 +37,9 @@ fmt.Printf("%.2f\n", similarity)
 // Output: 0.62
 ```
 
+More information and additional examples can be found on
+[GoDoc](https://godoc.org/github.com/adrg/strutil#Jaro).
+
 #### Jaro-Winkler
 
 ```go
@@ -44,6 +49,9 @@ fmt.Printf("%.2f\n", similarity)
 // Output: 0.66
 ```
 
+More information and additional examples can be found on
+[GoDoc](https://godoc.org/github.com/adrg/strutil#JaroWinkler).
+
 #### Smith-Waterman-Gotoh
 
 ```go
@@ -52,6 +60,9 @@ fmt.Printf("%.2f\n", similarity)
 
 // Output: 0.82
 ```
+
+More information and additional examples can be found on
+on [GoDoc](https://godoc.org/github.com/adrg/strutil#SmithWatermanGotoh).
 
 #### Unique
 
@@ -76,7 +87,7 @@ are always welcome.
 See [CONTRIBUTING.MD](https://github.com/adrg/strutil/blob/master/CONTRIBUTING.md).
 
 ## License
-Copyright (c) 2014 Adrian-George Bostan.
+Copyright (c) 2019 Adrian-George Bostan.
 
 This project is licensed under the [MIT license](https://opensource.org/licenses/MIT).
 See [LICENSE](https://github.com/adrg/strutil/blob/master/LICENSE) for more details.

@@ -1,3 +1,7 @@
+/*
+Package strutil provides string metrics for calculating string similarity as
+well as other string utility functions.
+*/
 package strutil
 
 import (
