@@ -25,13 +25,28 @@ fmt.Printf("%d, %.2f\n", distance, similarity)
 
 // Output: 4, 0.43
 ```
+
+```go
+// Customomize operation costs.
+opts := &strutil.LevOpts{
+    CaseSensitive: false,
+    InsertCost:    1,
+    DeleteCost:    1,
+    ReplaceCost:   2,
+}
+
+distance, similarity := strutil.Levenshtein("make", "Cake", opts)
+fmt.Printf("%d, %.2f\n", distance, similarity)
+
+// Output: 2, 0.50
+```
 More information and additional examples can be found on
 [GoDoc](https://godoc.org/github.com/adrg/strutil#Levenshtein).
 
 #### Jaro
 
 ```go
-similarity = strutil.Jaro("think", "tank")
+similarity := strutil.Jaro("think", "tank")
 fmt.Printf("%.2f\n", similarity)
 
 // Output: 0.62
@@ -43,7 +58,7 @@ More information and additional examples can be found on
 #### Jaro-Winkler
 
 ```go
-similarity = strutil.JaroWinkler("think", "tank")
+similarity := strutil.JaroWinkler("think", "tank")
 fmt.Printf("%.2f\n", similarity)
 
 // Output: 0.66
@@ -55,10 +70,27 @@ More information and additional examples can be found on
 #### Smith-Waterman-Gotoh
 
 ```go
-similarity = strutil.SmithWatermanGotoh("times roman", "times new roman", nil)
+similarity := strutil.SmithWatermanGotoh("times roman", "times new roman", nil)
 fmt.Printf("%.2f\n", similarity)
 
 // Output: 0.82
+```
+
+```go
+// Customize gap penalty and substitution function.
+opts := &strutil.SWGOpts{
+    CaseSensitive: false,
+    GapPenalty:    -0.1,
+    Substitution: strutil.SWGMatchMismatch{
+        Match:    1,
+        Mismatch: -0.5,
+    },
+}
+
+similarity := strutil.SmithWatermanGotoh("times roman", "times new roman", opts)
+fmt.Printf("%.2f\n", similarity)
+
+// Output: 0.96
 ```
 
 More information and additional examples can be found on
