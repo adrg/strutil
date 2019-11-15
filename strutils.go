@@ -31,19 +31,17 @@ func CommonPrefix(first, second string) string {
 // Unique returns a slice containing the unique items from the specified
 // string slice.
 func Unique(items []string) []string {
-	uniq := make([]string, len(items))
+	var uniq []string
+	registry := map[string]struct{}{}
 
-	index := 0
-	catalog := map[string]struct{}{}
 	for _, item := range items {
-		if _, ok := catalog[item]; ok {
+		if _, ok := registry[item]; ok {
 			continue
 		}
 
-		catalog[item] = struct{}{}
-		uniq[index] = item
-		index++
+		registry[item] = struct{}{}
+		uniq = append(uniq, item)
 	}
 
-	return uniq[0:index]
+	return uniq
 }
