@@ -9,5 +9,5 @@ before_install:
   - go get -t -v ./...
   - go install github.com/golangci/golangci-lint/cmd/golangci-lint
 script:
-  - golangci-lint run --enable-all -D wsl -D gochecknoglobals -D funlen
+  - golangci-lint run --enable-all -D wsl -D gochecknoglobals -D funlen -D prealloc
   - go test -v -race ./...
