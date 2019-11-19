@@ -49,7 +49,7 @@ More information and additional examples can be found on
 similarity := strutil.Jaro("think", "tank")
 fmt.Printf("%.2f\n", similarity)
 
-// Output: 0.62
+// Output: 0.78
 ```
 
 More information and additional examples can be found on
@@ -61,7 +61,7 @@ More information and additional examples can be found on
 similarity := strutil.JaroWinkler("think", "tank")
 fmt.Printf("%.2f\n", similarity)
 
-// Output: 0.66
+// Output: 0.80
 ```
 
 More information and additional examples can be found on

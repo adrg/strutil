@@ -22,7 +22,7 @@ func Jaro(first, second string) float64 {
 	}
 
 	// Get matching runes.
-	halfLen := max(fLen, sLen)/2 - 1
+	halfLen := max(0, max(fLen, sLen)/2)
 	fm := matchingRunes(first, second, halfLen)
 	sm := matchingRunes(second, first, halfLen)
 
@@ -33,7 +33,7 @@ func Jaro(first, second string) float64 {
 
 	// Return similarity.
 	return (float64(fmLen)/float64(fLen) +
-		float64(smLen)/(float64(sLen)) +
+		float64(smLen)/float64(sLen) +
 		float64(fmLen-transpositions(fm, sm)/2)/float64(fmLen)) / 3.0
 }
 
@@ -57,13 +57,14 @@ func JaroWinkler(first, second string) float64 {
 func matchingRunes(first, second string, limit int) []rune {
 	common := []rune{}
 	sRunes := []rune(second)
+	sLen := len(sRunes)
 
 	for i, r := range first {
-		end := min(i+limit, len(sRunes))
+		end := min(i+limit+1, sLen)
 		for j := max(0, i-limit); j < end; j++ {
-			if r == sRunes[j] {
+			if r == sRunes[j] && sRunes[j] != -1 {
 				common = append(common, sRunes[j])
-				sRunes[j] = 0
+				sRunes[j] = -1
 				break
 			}
 		}

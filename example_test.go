@@ -31,14 +31,14 @@ func ExampleJaro() {
 	fmt.Printf("(sort, shirt): %.2f\n", strutil.Jaro("sort", "shirt"))
 
 	// Output:
-	// (sort, shirt): 0.62
+	// (sort, shirt): 0.78
 }
 
 func ExampleJaroWinkler() {
 	fmt.Printf("(sort, shirt): %.2f\n", strutil.JaroWinkler("sort", "shirt"))
 
 	// Output:
-	// (sort, shirt): 0.66
+	// (sort, shirt): 0.80
 }
 
 func ExampleSmithWatermanGotoh() {
