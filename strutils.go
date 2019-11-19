@@ -29,7 +29,8 @@ func CommonPrefix(first, second string) string {
 }
 
 // Unique returns a slice containing the unique items from the specified
-// string slice.
+// string slice. The items in the output slice are in the order in which they
+// occur in the input slice.
 func Unique(items []string) []string {
 	var uniq []string
 	registry := map[string]struct{}{}
