@@ -4,64 +4,15 @@ import (
 	"fmt"
 
 	"github.com/adrg/strutil"
+	"github.com/adrg/strutil/metrics"
 )
 
-func ExampleLevenshtein() {
-	// Default options.
-	dist, sim := strutil.Levenshtein("book", "brick", nil)
-	fmt.Printf("(book, brick): distance: %d, similarity: %.2f\n", dist, sim)
-
-	// Custom options.
-	opts := &strutil.LevOpts{
-		CaseSensitive: false,
-		InsertCost:    1,
-		DeleteCost:    1,
-		ReplaceCost:   2,
-	}
-
-	dist, sim = strutil.Levenshtein("HELLO", "jello", opts)
-	fmt.Printf("(HELLO, jello): distance: %d, similarity: %.2f\n", dist, sim)
+func ExampleSimilarity() {
+	sim := strutil.Similarity("riddle", "needle", metrics.NewJaroWinkler())
+	fmt.Printf("(riddle, needle) similarity: %.2f\n", sim)
 
 	// Output:
-	// (book, brick): distance: 3, similarity: 0.40
-	// (HELLO, jello): distance: 2, similarity: 0.60
-}
-
-func ExampleJaro() {
-	fmt.Printf("(sort, shirt): %.2f\n", strutil.Jaro("sort", "shirt"))
-
-	// Output:
-	// (sort, shirt): 0.78
-}
-
-func ExampleJaroWinkler() {
-	fmt.Printf("(sort, shirt): %.2f\n", strutil.JaroWinkler("sort", "shirt"))
-
-	// Output:
-	// (sort, shirt): 0.80
-}
-
-func ExampleSmithWatermanGotoh() {
-	// Default options.
-	sim := strutil.SmithWatermanGotoh("a pink kitten", "a kitten", nil)
-	fmt.Printf("(a pink kitten, a kitten): %.2f\n", sim)
-
-	// Custom options.
-	opts := &strutil.SWGOpts{
-		CaseSensitive: false,
-		GapPenalty:    -0.1,
-		Substitution: strutil.SWGMatchMismatch{
-			Match:    1,
-			Mismatch: -0.5,
-		},
-	}
-
-	sim = strutil.SmithWatermanGotoh("a pink kitten", "A KITTEN", opts)
-	fmt.Printf("(a pink kitten, A KITTEN): %.2f\n", sim)
-
-	// Output:
-	// (a pink kitten, a kitten): 0.88
-	// (a pink kitten, A KITTEN): 0.94
+	// (riddle, needle) similarity: 0.56
 }
 
 func ExampleCommonPrefix() {

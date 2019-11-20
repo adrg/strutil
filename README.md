@@ -109,8 +109,9 @@ fmt.Println(strutil.Unique(sample))
 
 For more information see:
 - [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance)
-- [Jaro-Winkler distance](https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance)
-- [Smith-Waterman algorithm](https://en.wikipedia.org/wiki/Smith%E2%80%93Waterman_algorithm)
+- [Jaro-Winkler distance](https://en.wikipedia.org/wiki/Jaro-Winkler_distance)
+- [Smith-Waterman algorithm](https://en.wikipedia.org/wiki/Smith-Waterman_algorithm)
+- [Sorensen-Dice coefficient](https://en.wikipedia.org/wiki/Sorensen–Dice_coefficient)
 
 ## Contributing
 
