@@ -7,7 +7,7 @@ strutil
 
 strutil provides string metrics for calculating string similarity as well as
 other string utility functions.  
-Full documentation can be found at: https://godoc.org/github.com/adrg/strutil
+Full documentation can be found at: https://godoc.org/github.com/adrg/strutil.
 
 ## Installation
 
@@ -15,95 +15,127 @@ Full documentation can be found at: https://godoc.org/github.com/adrg/strutil
 go get github.com/adrg/strutil
 ```
 
-## Usage
+## String metrics
+
+- [Levenshtein](#levenshtein)
+- [Jaro](#jaro)
+- [Jaro-Winkler](#jaro-winkler)
+- [Smith-Waterman-Gotoh](#smith-waterman-gotoh)
+- [Sorensen-Dice](#sorensen-dice)
+
+The package defines the `StringMetric` interface, which is implemented by all
+the string metrics. The interface is used with the `Similarity` function, which
+calculates the similarity between the specified strings, using the provided
+string metric.
+
+```go
+type StringMetric interface {
+	Compare(a, b string) float64
+}
+
+func Similarity(a, b string, metric StringMetric) float64 {
+}
+```
+
+All defined string metrics can be found in the
+[metrics](https://godoc.org/github.com/adrg/strutil/metrics) package.
 
 #### Levenshtein
 
+Calculate similarity using default options.
 ```go
-distance, similarity := strutil.Levenshtein("graph", "giraffe", nil)
-fmt.Printf("%d, %.2f\n", distance, similarity)
-
-// Output: 4, 0.43
+similarity := strutil.Similarity("graph", "giraffe", metrics.NewLevenshtein())
+fmt.Printf("%.2f\n", similarity) // Output: 0.43
 ```
 
+Configure edit operation costs.
 ```go
-// Customomize operation costs.
-opts := &strutil.LevOpts{
-    CaseSensitive: false,
-    InsertCost:    1,
-    DeleteCost:    1,
-    ReplaceCost:   2,
-}
+lev := metrics.NewLevenshtein()
+lev.CaseSensitive = false
+lev.InsertCost = 1
+lev.ReplaceCost = 2
+lev.DeleteCost = 1
 
-distance, similarity := strutil.Levenshtein("make", "Cake", opts)
-fmt.Printf("%d, %.2f\n", distance, similarity)
-
-// Output: 2, 0.50
+similarity := strutil.Similarity("make", "Cake", lev)
+fmt.Printf("%.2f\n", similarity) // Output: 0.50
 ```
+
+Calculate distance.
+```go
+lev := metrics.NewLevenshtein()
+fmt.Printf("%d\n", lev.Distance("graph", "giraffe")) // Output: 4
+```
+
 More information and additional examples can be found on
-[GoDoc](https://godoc.org/github.com/adrg/strutil#Levenshtein).
+[GoDoc](https://godoc.org/github.com/adrg/strutil/metrics#Levenshtein).
 
 #### Jaro
 
 ```go
-similarity := strutil.Jaro("think", "tank")
-fmt.Printf("%.2f\n", similarity)
-
-// Output: 0.78
+similarity := strutil.Similarity("think", "tank", metrics.NewJaro())
+fmt.Printf("%.2f\n", similarity) // Output: 0.78
 ```
 
 More information and additional examples can be found on
-[GoDoc](https://godoc.org/github.com/adrg/strutil#Jaro).
+[GoDoc](https://godoc.org/github.com/adrg/strutil/metrics#Jaro).
 
 #### Jaro-Winkler
 
 ```go
-similarity := strutil.JaroWinkler("think", "tank")
-fmt.Printf("%.2f\n", similarity)
-
-// Output: 0.80
+similarity := strutil.Similarity("think", "tank", metrics.NewJaroWinkler())
+fmt.Printf("%.2f\n", similarity) // Output: 0.80
 ```
 
 More information and additional examples can be found on
-[GoDoc](https://godoc.org/github.com/adrg/strutil#JaroWinkler).
+[GoDoc](https://godoc.org/github.com/adrg/strutil/metrics#JaroWinkler).
 
 #### Smith-Waterman-Gotoh
 
+Calculate similarity using default options.
 ```go
-similarity := strutil.SmithWatermanGotoh("times roman", "times new roman", nil)
-fmt.Printf("%.2f\n", similarity)
-
-// Output: 0.82
+swg := metrics.NewSmithWatermanGotoh()
+similarity := strutil.Similarity("times roman", "times new roman", swg)
+fmt.Printf("%.2f\n", similarity) // Output: 0.82
 ```
 
+Customize gap penalty and substitution function.
 ```go
-// Customize gap penalty and substitution function.
-opts := &strutil.SWGOpts{
-    CaseSensitive: false,
-    GapPenalty:    -0.1,
-    Substitution: strutil.SWGMatchMismatch{
-        Match:    1,
-        Mismatch: -0.5,
-    },
+swg := metrics.NewSmithWatermanGotoh()
+swg.CaseSensitive = false
+swg.GapPenalty = -0.1
+swg.Substitution = metrics.MatchMismatch {
+    Match:    1,
+    Mismatch: -0.5,
 }
 
-similarity := strutil.SmithWatermanGotoh("times roman", "times new roman", opts)
-fmt.Printf("%.2f\n", similarity)
-
-// Output: 0.96
+similarity := strutil.Similarity("Times Roman", "times new roman", swg)
+fmt.Printf("%.2f\n", similarity) // Output: 0.96
 ```
 
 More information and additional examples can be found on
-on [GoDoc](https://godoc.org/github.com/adrg/strutil#SmithWatermanGotoh).
+on [GoDoc](https://godoc.org/github.com/adrg/strutil/metrics#SmithWatermanGotoh).
 
-#### Unique
+#### Sorensen-Dice
 
+Calculate similarity using default options.
 ```go
-sample := []string{"cats", "dogs", "tigers", "dogs", "dogs", "cats", "mice"}
-fmt.Println(strutil.Unique(sample))
-
-// Output: [cats dogs tigers mice]
+sd := metrics.NewSorensenDice()
+similarity := strutil.Similarity("time to make haste", "no time to waste", sd)
+fmt.Printf("%.2f\n", similarity) // Output: 0.62
 ```
+
+Customize n-gram size.
+```go
+sd := metrics.NewSorensenDice()
+sd.CaseSensitive = false
+sd.NgramSize = 3
+
+similarity := strutil.Similarity("Time to make haste", "no time to waste", sd)
+fmt.Printf("%.2f\n", similarity) // Output: 0.80
+```
+
+More information and additional examples can be found on
+on [GoDoc](https://godoc.org/github.com/adrg/strutil/metrics#SorensenDice).
 
 ## References
 
