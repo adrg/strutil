@@ -17,6 +17,7 @@ func ExampleSimilarity() {
 
 func ExampleCommonPrefix() {
 	fmt.Println("(answer, anvil):", strutil.CommonPrefix("answer", "anvil"))
+
 	// Output:
 	// (answer, anvil): an
 }
@@ -24,6 +25,7 @@ func ExampleCommonPrefix() {
 func ExampleUnique() {
 	sample := []string{"a", "b", "a", "b", "b", "c"}
 	fmt.Println("[a b a b b c]:", strutil.Unique(sample))
+
 	// Output:
 	// [a b a b b c]: [a b c]
 }
