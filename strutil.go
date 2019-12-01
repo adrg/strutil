@@ -34,9 +34,14 @@ func CommonPrefix(a, b string) string {
 	return util.CommonPrefix(a, b)
 }
 
-// Unique returns a slice containing the unique items from the specified string
-// slice. The items in the output slice are in the order in which they occur in
-// the input slice.
-func Unique(items []string) []string {
-	return util.Unique(items)
+// UniqueSlice returns a slice containing the unique items from the specified
+// string slice. The items in the output slice are in the order in which they
+// occur in the input slice.
+func UniqueSlice(items []string) []string {
+	return util.UniqueSlice(items)
+}
+
+// SliceContains returns true if terms contains q, or false otherwise.
+func SliceContains(terms []string, q string) bool {
+	return util.SliceContains(terms, q)
 }

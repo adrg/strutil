@@ -22,10 +22,20 @@ func ExampleCommonPrefix() {
 	// (answer, anvil): an
 }
 
-func ExampleUnique() {
+func ExampleUniqueSlice() {
 	sample := []string{"a", "b", "a", "b", "b", "c"}
-	fmt.Println("[a b a b b c]:", strutil.Unique(sample))
+	fmt.Println("[a b a b b c]:", strutil.UniqueSlice(sample))
 
 	// Output:
 	// [a b a b b c]: [a b c]
+}
+
+func ExampleSliceContains() {
+	terms := []string{"a", "b", "c"}
+	fmt.Println("([a b c], b):", strutil.SliceContains(terms, "b"))
+	fmt.Println("([a b c], d):", strutil.SliceContains(terms, "d"))
+
+	// Output:
+	// ([a b c], b): true
+	// ([a b c], d): false
 }

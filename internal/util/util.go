@@ -22,10 +22,10 @@ func CommonPrefix(first, second string) string {
 	return string(sRunes[0:commonLen])
 }
 
-// Unique returns a slice containing the unique items from the specified string
-// slice. The items in the output slice are in the order in which they occur in
-// the input slice.
-func Unique(items []string) []string {
+// UniqueSlice returns a slice containing the unique items from the specified
+// string slice. The items in the output slice are in the order in which they
+// occur in the input slice.
+func UniqueSlice(items []string) []string {
 	var uniq []string
 	registry := map[string]struct{}{}
 
@@ -39,6 +39,17 @@ func Unique(items []string) []string {
 	}
 
 	return uniq
+}
+
+// SliceContains returns true if terms contains q, or false otherwise.
+func SliceContains(terms []string, q string) bool {
+	for _, term := range terms {
+		if q == term {
+			return true
+		}
+	}
+
+	return false
 }
 
 // Min returns the value of the smallest argument.
