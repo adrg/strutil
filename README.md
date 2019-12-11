@@ -131,7 +131,7 @@ sd.CaseSensitive = false
 sd.NgramSize = 3
 
 similarity := strutil.Similarity("Time to make haste", "no time to waste", sd)
-fmt.Printf("%.2f\n", similarity) // Output: 0.80
+fmt.Printf("%.2f\n", similarity) // Output: 0.53
 ```
 
 More information and additional examples can be found on

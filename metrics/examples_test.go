@@ -89,5 +89,5 @@ func ExampleSorensenDice() {
 
 	// Output:
 	// (night, alright) similarity: 0.67
-	// (night, alright) similarity: 0.75
+	// (night, alright) similarity: 0.50
 }

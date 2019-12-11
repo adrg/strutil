@@ -77,5 +77,5 @@ func (m *SorensenDice) Compare(a, b string) float64 {
 	}
 
 	// Return similarity.
-	return float64(ngramSize) * float64(intersection) / float64(ngramCount)
+	return 2 * float64(intersection) / float64(ngramCount)
 }
