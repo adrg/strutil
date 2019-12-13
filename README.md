@@ -22,6 +22,7 @@ go get github.com/adrg/strutil
 - [Jaro-Winkler](#jaro-winkler)
 - [Smith-Waterman-Gotoh](#smith-waterman-gotoh)
 - [Sorensen-Dice](#sorensen-dice)
+- [Jaccard](#jaccard)
 
 The package defines the `StringMetric` interface, which is implemented by all
 the string metrics. The interface is used with the `Similarity` function, which
@@ -137,6 +138,46 @@ fmt.Printf("%.2f\n", similarity) // Output: 0.53
 More information and additional examples can be found on
 on [GoDoc](https://godoc.org/github.com/adrg/strutil/metrics#SorensenDice).
 
+#### Jaccard
+
+Calculate similarity using default options.
+```go
+j := metrics.NewJaccard()
+similarity := strutil.Similarity("time to make haste", "no time to waste", j)
+fmt.Printf("%.2f\n", similarity) // Output: 0.45
+```
+
+Customize n-gram size.
+```go
+j := metrics.NewJaccard()
+j.CaseSensitive = false
+j.NgramSize = 3
+
+similarity := strutil.Similarity("Time to make haste", "no time to waste", j)
+fmt.Printf("%.2f\n", similarity) // Output: 0.36
+```
+
+The input of the Sorensen-Dice example is the same as the one of Jaccard
+because the metrics bear a resemblance to each other. In fact, each of the
+coefficients can be used to calculate the other one.
+
+Sorensen-Dice to Jaccard.
+```
+J = SD/(2-SD)
+
+where SD is the Sorensen-Dice coefficient and J is the Jaccard index.
+```
+
+Jaccard to Sorensen-Dice.
+```
+SD = 2*J/(1+J)
+
+where SD is the Sorensen-Dice coefficient and J is the Jaccard index.
+```
+
+More information and additional examples can be found on
+on [GoDoc](https://godoc.org/github.com/adrg/strutil/metrics#Jaccard).
+
 ## References
 
 For more information see:
@@ -144,6 +185,7 @@ For more information see:
 - [Jaro-Winkler distance](https://en.wikipedia.org/wiki/Jaro-Winkler_distance)
 - [Smith-Waterman algorithm](https://en.wikipedia.org/wiki/Smith-Waterman_algorithm)
 - [Sorensen-Dice coefficient](https://en.wikipedia.org/wiki/Sorensen–Dice_coefficient)
+- [Jaccard index](https://en.wikipedia.org/wiki/Jaccard_index)
 
 ## Contributing
 

@@ -15,6 +15,7 @@ import (
 //  - Levenshtein
 //  - Smith-Waterman-Gotoh
 //  - Sorensen-Dice
+//  - Jaccard
 //
 // For more information see https://godoc.org/github.com/adrg/strutil/metrics.
 type StringMetric interface {
