@@ -91,3 +91,21 @@ func ExampleSorensenDice() {
 	// (night, alright) similarity: 0.67
 	// (night, alright) similarity: 0.50
 }
+
+func ExampleJaccard() {
+	// Default options.
+	j := metrics.NewJaccard()
+	sim := j.Compare("night", "alight")
+	fmt.Printf("(night, alright) similarity: %.2f\n", sim)
+
+	// Custom options.
+	j.CaseSensitive = false
+	j.NgramSize = 3
+
+	sim = j.Compare("night", "alright")
+	fmt.Printf("(night, alright) similarity: %.2f\n", sim)
+
+	// Output:
+	// (night, alright) similarity: 0.50
+	// (night, alright) similarity: 0.33
+}
