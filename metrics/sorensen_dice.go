@@ -2,6 +2,8 @@ package metrics
 
 import (
 	"strings"
+
+	"github.com/adrg/strutil/internal/util"
 )
 
 // SorensenDice represents the Sorensen-Dice metric for measuring the
@@ -31,6 +33,7 @@ func NewSorensenDice() *SorensenDice {
 // Compare returns the Sorensen-Dice similarity coefficient of a and b. The
 // returned similarity is a number between 0 and 1. Larger similarity numbers
 // indicate closer matches.
+// An n-gram size of 2 is used if the provided size is less than or equal to 0.
 func (m *SorensenDice) Compare(a, b string) float64 {
 	// Lower terms if case insensitive comparison is specified.
 	if !m.CaseSensitive {
@@ -38,44 +41,20 @@ func (m *SorensenDice) Compare(a, b string) float64 {
 		b = strings.ToLower(b)
 	}
 
-	runesA, runesB := []rune(a), []rune(b)
-	lenA, lenB := len(runesA), len(runesB)
-
 	// Check if both terms are empty.
-	if lenA == 0 && lenB == 0 {
+	runesA, runesB := []rune(a), []rune(b)
+	if len(runesA) == 0 && len(runesB) == 0 {
 		return 1
 	}
 
-	// Check if one of the terms is shorter than the size of a n-gram.
 	ngramSize := m.NgramSize
-	if lenA < ngramSize || lenB < ngramSize {
-		return 0
+	if ngramSize <= 0 {
+		ngramSize = 2
 	}
 
-	// Compute n-grams of the first term.
-	ngrams := map[string]int{}
-	var ngramCount int
-
-	for i := 0; i < lenA-(ngramSize-1); i++ {
-		ngram := string(runesA[i : i+ngramSize])
-		count, _ := ngrams[ngram]
-		ngrams[ngram] = count + 1
-		ngramCount++
-	}
-
-	// Calculate n-gram intersection with the second term.
-	var intersection int
-
-	for i := 0; i < lenB-(ngramSize-1); i++ {
-		ngram := string(runesB[i : i+ngramSize])
-		ngramCount++
-
-		if count, ok := ngrams[ngram]; ok && count > 0 {
-			intersection++
-			ngrams[ngram] = count - 1
-		}
-	}
+	// Calculate n-gram intersection and union.
+	_, intersection, total := util.NgramIntersection(runesA, runesB, ngramSize)
 
 	// Return similarity.
-	return 2 * float64(intersection) / float64(ngramCount)
+	return 2 * float64(intersection) / float64(total)
 }
