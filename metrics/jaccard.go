@@ -6,10 +6,10 @@ import (
 	"github.com/adrg/strutil/internal/util"
 )
 
-// SorensenDice represents the Sorensen-Dice metric for measuring the
-// similarity between sequences.
-//   For more information see https://en.wikipedia.org/wiki/Sorensen–Dice_coefficient.
-type SorensenDice struct {
+// Jaccard represents the Jaccard index for measuring the similarity
+// between sequences.
+//   https://en.wikipedia.org/wiki/Jaccard_index.
+type Jaccard struct {
 	// CaseSensitive specifies if the string comparison is case sensitive.
 	CaseSensitive bool
 
@@ -18,23 +18,23 @@ type SorensenDice struct {
 	NgramSize int
 }
 
-// NewSorensenDice returns a new Sorensen-Dice string metric.
+// NewJaccard returns a new Jaccard string metric.
 //
 // Default options:
 //   CaseSensitive: true
 //   NGramSize: 2
-func NewSorensenDice() *SorensenDice {
-	return &SorensenDice{
+func NewJaccard() *Jaccard {
+	return &Jaccard{
 		CaseSensitive: true,
 		NgramSize:     2,
 	}
 }
 
-// Compare returns the Sorensen-Dice similarity coefficient of a and b. The
+// Compare returns the Jaccard similarity coefficient of a and b. The
 // returned similarity is a number between 0 and 1. Larger similarity numbers
 // indicate closer matches.
 // An n-gram size of 2 is used if the provided size is less than or equal to 0.
-func (m *SorensenDice) Compare(a, b string) float64 {
+func (m *Jaccard) Compare(a, b string) float64 {
 	// Lower terms if case insensitive comparison is specified.
 	if !m.CaseSensitive {
 		a = strings.ToLower(a)
@@ -59,5 +59,5 @@ func (m *SorensenDice) Compare(a, b string) float64 {
 	}
 
 	// Return similarity.
-	return 2 * float64(intersection) / float64(total)
+	return float64(intersection) / float64(total-intersection)
 }
