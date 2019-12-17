@@ -1,6 +1,17 @@
 /*
 Package strutil provides string metrics for calculating string similarity as
-well as other string utility functions.
+well as other string utility functions. Documentation for all the metrics can
+be found at https://godoc.org/github.com/adrg/strutil/metrics.
+
+Included string metrics:
+  - Jaro
+  - Jaro-Winkler
+  - Levenshtein
+  - Smith-Waterman-Gotoh
+  - Sorensen-Dice
+  - Jaccard
+  - Overlap coefficient
+
 */
 package strutil
 
@@ -16,7 +27,7 @@ import (
 //  - Smith-Waterman-Gotoh
 //  - Sorensen-Dice
 //  - Jaccard
-//  - Overlap Coefficient
+//  - Overlap coefficient
 //
 // For more information see https://godoc.org/github.com/adrg/strutil/metrics.
 type StringMetric interface {
