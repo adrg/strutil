@@ -16,6 +16,7 @@ import (
 //  - Smith-Waterman-Gotoh
 //  - Sorensen-Dice
 //  - Jaccard
+//  - Overlap Coefficient
 //
 // For more information see https://godoc.org/github.com/adrg/strutil/metrics.
 type StringMetric interface {
