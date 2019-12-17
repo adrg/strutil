@@ -77,7 +77,7 @@ func ExampleSmithWatermanGotoh() {
 func ExampleSorensenDice() {
 	// Default options.
 	sd := metrics.NewSorensenDice()
-	sim := sd.Compare("night", "alight")
+	sim := sd.Compare("night", "alright")
 	fmt.Printf("(night, alright) similarity: %.2f\n", sim)
 
 	// Custom options.
@@ -88,14 +88,14 @@ func ExampleSorensenDice() {
 	fmt.Printf("(night, alright) similarity: %.2f\n", sim)
 
 	// Output:
-	// (night, alright) similarity: 0.67
+	// (night, alright) similarity: 0.60
 	// (night, alright) similarity: 0.50
 }
 
 func ExampleJaccard() {
 	// Default options.
 	j := metrics.NewJaccard()
-	sim := j.Compare("night", "alight")
+	sim := j.Compare("night", "alright")
 	fmt.Printf("(night, alright) similarity: %.2f\n", sim)
 
 	// Custom options.
@@ -106,6 +106,29 @@ func ExampleJaccard() {
 	fmt.Printf("(night, alright) similarity: %.2f\n", sim)
 
 	// Output:
-	// (night, alright) similarity: 0.50
+	// (night, alright) similarity: 0.43
 	// (night, alright) similarity: 0.33
+}
+
+func ExampleOverlapCoefficient() {
+	// Default options.
+	oc := metrics.NewOverlapCoefficient()
+	sim := oc.Compare("night", "alright")
+	fmt.Printf("(night, alright) similarity: %.2f\n", sim)
+
+	// Subset comparison.
+	sim = oc.Compare("aa", "aaaa")
+	fmt.Printf("(aa, aaaa) similarity: %.2f\n", sim)
+
+	// Custom options.
+	oc.CaseSensitive = false
+	oc.NgramSize = 3
+
+	sim = oc.Compare("night", "alright")
+	fmt.Printf("(night, alright) similarity: %.2f\n", sim)
+
+	// Output:
+	// (night, alright) similarity: 0.75
+	// (aa, aaaa) similarity: 1.00
+	// (night, alright) similarity: 0.67
 }
