@@ -23,6 +23,7 @@ go get github.com/adrg/strutil
 - [Smith-Waterman-Gotoh](#smith-waterman-gotoh)
 - [Sorensen-Dice](#sorensen-dice)
 - [Jaccard](#jaccard)
+- [Overlap Coefficient](#overlap-coefficient)
 
 The package defines the `StringMetric` interface, which is implemented by all
 the string metrics. The interface is used with the `Similarity` function, which
@@ -31,7 +32,7 @@ string metric.
 
 ```go
 type StringMetric interface {
-	Compare(a, b string) float64
+    Compare(a, b string) float64
 }
 
 func Similarity(a, b string, metric StringMetric) float64 {
@@ -178,6 +179,28 @@ where SD is the Sorensen-Dice coefficient and J is the Jaccard index.
 More information and additional examples can be found on
 on [GoDoc](https://godoc.org/github.com/adrg/strutil/metrics#Jaccard).
 
+#### Overlap Coefficient
+
+Calculate similarity using default options.
+```go
+oc := metrics.NewOverlapCoefficient()
+similarity := strutil.Similarity("time to make haste", "no time to waste", oc)
+fmt.Printf("%.2f\n", similarity) // Output: 0.67
+```
+
+Customize n-gram size.
+```go
+oc := metrics.NewOverlapCoefficient()
+oc.CaseSensitive = false
+oc.NgramSize = 3
+
+similarity := strutil.Similarity("Time to make haste", "no time to waste", oc)
+fmt.Printf("%.2f\n", similarity) // Output: 0.57
+```
+
+More information and additional examples can be found on
+on [GoDoc](https://godoc.org/github.com/adrg/strutil/metrics#OverlapCoefficient).
+
 ## References
 
 For more information see:
@@ -186,6 +209,7 @@ For more information see:
 - [Smith-Waterman algorithm](https://en.wikipedia.org/wiki/Smith-Waterman_algorithm)
 - [Sorensen-Dice coefficient](https://en.wikipedia.org/wiki/Sorensen–Dice_coefficient)
 - [Jaccard index](https://en.wikipedia.org/wiki/Jaccard_index)
+- [Overlap coefficient](https://en.wikipedia.org/wiki/Overlap_coefficient)
 
 ## Contributing
 
