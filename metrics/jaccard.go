@@ -47,17 +47,19 @@ func (m *Jaccard) Compare(a, b string) float64 {
 		return 1
 	}
 
-	ngramSize := m.NgramSize
-	if ngramSize <= 0 {
-		ngramSize = 2
+	size := m.NgramSize
+	if size <= 0 {
+		size = 2
 	}
 
 	// Calculate n-gram intersection and union.
-	_, intersection, total := util.NgramIntersection(runesA, runesB, ngramSize)
+	_, common, totalA, totalB := util.NgramIntersection(runesA, runesB, size)
+
+	total := totalA + totalB
 	if total == 0 {
 		return 0
 	}
 
 	// Return similarity.
-	return float64(intersection) / float64(total-intersection)
+	return float64(common) / float64(total-common)
 }

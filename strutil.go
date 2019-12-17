@@ -51,24 +51,24 @@ func SliceContains(terms []string, q string) bool {
 // The n-grams in the output slice are in the order in which they occur in the
 // input term. An n-gram size of 1 is used if the provided size is less than or
 // equal to 0.
-func Ngrams(term string, ngramSize int) []string {
-	return util.Ngrams([]rune(term), ngramSize)
+func Ngrams(term string, size int) []string {
+	return util.Ngrams([]rune(term), size)
 }
 
 // NgramMap returns a map of all n-grams of the specified size for the provided
 // term, along with their frequency. The function also returns the total number
 // of n-grams, which is the sum of all the values in the output map.
 // An n-gram size of 1 is used if the provided size is less than or equal to 0.
-func NgramMap(term string, ngramSize int) (map[string]int, int) {
-	return util.NgramMap([]rune(term), ngramSize)
+func NgramMap(term string, size int) (map[string]int, int) {
+	return util.NgramMap([]rune(term), size)
 }
 
 // NgramIntersection returns a map of the n-grams of the specified size found
 // in both terms, along with their frequency. The function also returns the
-// number of common n-grams (the sum of all the values in the output map) and
-// the total number of n-grams (the count of all n-grams in both terms, common
-// or not). An n-gram size of 1 is used if the provided size is less than or
-// equal to 0.
-func NgramIntersection(a, b string, ngramSize int) (map[string]int, int, int) {
-	return util.NgramIntersection([]rune(a), []rune(b), ngramSize)
+// number of common n-grams (the sum of all the values in the output map), the
+// total number of n-grams in the first term and the total number of n-grams in
+// the second term. An n-gram size of 1 is used if the provided size is less
+// than or equal to 0.
+func NgramIntersection(a, b string, size int) (map[string]int, int, int, int) {
+	return util.NgramIntersection([]rune(a), []rune(b), size)
 }

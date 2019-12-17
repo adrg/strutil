@@ -64,9 +64,9 @@ func ExampleNgramMap() {
 }
 
 func ExampleNgramIntersection() {
-	ngrams, common, total := strutil.NgramIntersection("ababc", "ababd", 2)
+	ngrams, common, totalA, totalB := strutil.NgramIntersection("ababc", "ababd", 2)
 	fmt.Printf("(ababc, ababd) n-gram intersection: %v (%d/%d n-grams)\n",
-		ngrams, common, total)
+		ngrams, common, totalA+totalB)
 
 	// Output:
 	// (ababc, ababd) n-gram intersection: map[ab:2 ba:1] (3/8 n-grams)
