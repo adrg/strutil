@@ -1,9 +1,10 @@
 strutil
 =======
-[![Build Status](https://travis-ci.org/adrg/strutil.svg?branch=master)](https://travis-ci.org/adrg/strutil)
-[![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg?style=flat-square)](https://godoc.org/github.com/adrg/strutil)
-[![License: MIT](https://img.shields.io/badge/license-MIT-red.svg?style=flat-square)](https://opensource.org/licenses/MIT)
-[![Go Report Card](https://goreportcard.com/badge/github.com/adrg/strutil)](https://goreportcard.com/report/github.com/adrg/strutil)
+[![Build Status](https://github.com/adrg/strutil/workflows/CI/badge.svg)](https://github.com/adrg/strutil/actions?query=workflow%3ACI)
+[![Code coverage](https://codecov.io/gh/adrg/strutil/branch/master/graphs/badge.svg?branch=master)](https://codecov.io/gh/adrg/strutil)
+[![GoDoc documentation](https://img.shields.io/badge/godoc-reference-blue.svg?style=flat-square)](https://godoc.org/github.com/adrg/strutil)
+[![MIT license](https://img.shields.io/badge/license-MIT-red.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+[![Go report card](https://goreportcard.com/badge/github.com/adrg/strutil)](https://goreportcard.com/report/github.com/adrg/strutil)
 
 strutil provides string metrics for calculating string similarity as well as
 other string utility functions.  
