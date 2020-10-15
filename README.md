@@ -212,11 +212,22 @@ For more information see:
 - [Jaccard index](https://en.wikipedia.org/wiki/Jaccard_index)
 - [Overlap coefficient](https://en.wikipedia.org/wiki/Overlap_coefficient)
 
+## Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/adrg/strutil.svg)](https://starchart.cc/adrg/strutil)
+
 ## Contributing
 
 Contributions in the form of pull requests, issues or just general feedback,
 are always welcome.
 See [CONTRIBUTING.MD](https://github.com/adrg/strutil/blob/master/CONTRIBUTING.md).
+
+## Buy me a coffee
+
+If you found this project useful and want to support it, consider buying me a coffee.  
+<a href="https://www.buymeacoffee.com/adrg">
+    <img src="https://cdn.buymeacoffee.com/buttons/v2/arial-orange.png" alt="Buy Me A Coffee" height="42px">
+</a>
 
 ## License
 Copyright (c) 2019 Adrian-George Bostan.
