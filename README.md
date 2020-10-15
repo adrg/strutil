@@ -2,13 +2,13 @@ strutil
 =======
 [![Build Status](https://github.com/adrg/strutil/workflows/CI/badge.svg)](https://github.com/adrg/strutil/actions?query=workflow%3ACI)
 [![Code coverage](https://codecov.io/gh/adrg/strutil/branch/master/graphs/badge.svg?branch=master)](https://codecov.io/gh/adrg/strutil)
-[![GoDoc documentation](https://img.shields.io/badge/godoc-reference-blue.svg?style=flat-square)](https://godoc.org/github.com/adrg/strutil)
+[![pkg.go.dev documentation](https://pkg.go.dev/badge/github.com/adrg/strutil)](https://pkg.go.dev/github.com/adrg/strutil)
 [![MIT license](https://img.shields.io/badge/license-MIT-red.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 [![Go report card](https://goreportcard.com/badge/github.com/adrg/strutil)](https://goreportcard.com/report/github.com/adrg/strutil)
 
 strutil provides string metrics for calculating string similarity as well as
 other string utility functions.  
-Full documentation can be found at: https://godoc.org/github.com/adrg/strutil.
+Full documentation can be found at: https://pkg.go.dev/github.com/adrg/strutil.
 
 ## Installation
 
@@ -41,7 +41,7 @@ func Similarity(a, b string, metric StringMetric) float64 {
 ```
 
 All defined string metrics can be found in the
-[metrics](https://godoc.org/github.com/adrg/strutil/metrics) package.
+[metrics](https://pkg.go.dev/github.com/adrg/strutil/metrics) package.
 
 #### Levenshtein
 
@@ -70,7 +70,7 @@ fmt.Printf("%d\n", lev.Distance("graph", "giraffe")) // Output: 4
 ```
 
 More information and additional examples can be found on
-[GoDoc](https://godoc.org/github.com/adrg/strutil/metrics#Levenshtein).
+[pkg.go.dev](https://pkg.go.dev/github.com/adrg/strutil/metrics#Levenshtein).
 
 #### Jaro
 
@@ -80,7 +80,7 @@ fmt.Printf("%.2f\n", similarity) // Output: 0.78
 ```
 
 More information and additional examples can be found on
-[GoDoc](https://godoc.org/github.com/adrg/strutil/metrics#Jaro).
+[pkg.go.dev](https://pkg.go.dev/github.com/adrg/strutil/metrics#Jaro).
 
 #### Jaro-Winkler
 
@@ -90,7 +90,7 @@ fmt.Printf("%.2f\n", similarity) // Output: 0.80
 ```
 
 More information and additional examples can be found on
-[GoDoc](https://godoc.org/github.com/adrg/strutil/metrics#JaroWinkler).
+[pkg.go.dev](https://pkg.go.dev/github.com/adrg/strutil/metrics#JaroWinkler).
 
 #### Smith-Waterman-Gotoh
 
@@ -116,7 +116,7 @@ fmt.Printf("%.2f\n", similarity) // Output: 0.96
 ```
 
 More information and additional examples can be found on
-on [GoDoc](https://godoc.org/github.com/adrg/strutil/metrics#SmithWatermanGotoh).
+[pkg.go.dev](https://pkg.go.dev/github.com/adrg/strutil/metrics#SmithWatermanGotoh).
 
 #### Sorensen-Dice
 
@@ -138,7 +138,7 @@ fmt.Printf("%.2f\n", similarity) // Output: 0.53
 ```
 
 More information and additional examples can be found on
-on [GoDoc](https://godoc.org/github.com/adrg/strutil/metrics#SorensenDice).
+[pkg.go.dev](https://pkg.go.dev/github.com/adrg/strutil/metrics#SorensenDice).
 
 #### Jaccard
 
@@ -178,7 +178,7 @@ where SD is the Sorensen-Dice coefficient and J is the Jaccard index.
 ```
 
 More information and additional examples can be found on
-on [GoDoc](https://godoc.org/github.com/adrg/strutil/metrics#Jaccard).
+[pkg.go.dev](https://pkg.go.dev/github.com/adrg/strutil/metrics#Jaccard).
 
 #### Overlap Coefficient
 
@@ -200,7 +200,7 @@ fmt.Printf("%.2f\n", similarity) // Output: 0.57
 ```
 
 More information and additional examples can be found on
-on [GoDoc](https://godoc.org/github.com/adrg/strutil/metrics#OverlapCoefficient).
+[pkg.go.dev](https://pkg.go.dev/github.com/adrg/strutil/metrics#OverlapCoefficient).
 
 ## References
 
