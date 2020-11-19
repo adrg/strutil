@@ -1,7 +1,7 @@
 /*
 Package strutil provides string metrics for calculating string similarity as
 well as other string utility functions. Documentation for all the metrics can
-be found at https://godoc.org/github.com/adrg/strutil/metrics.
+be found at https://pkg.go.dev/github.com/adrg/strutil/metrics.
 
 Included string metrics:
   - Jaro
@@ -29,7 +29,7 @@ import (
 //  - Jaccard
 //  - Overlap coefficient
 //
-// For more information see https://godoc.org/github.com/adrg/strutil/metrics.
+// For more information see https://pkg.go.dev/github.com/adrg/strutil/metrics.
 type StringMetric interface {
 	Compare(a, b string) float64
 }
