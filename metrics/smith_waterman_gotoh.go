@@ -104,6 +104,6 @@ func (m *SmithWatermanGotoh) Compare(a, b string) float64 {
 		}
 	}
 
-	// Compute similarity.
+	// Return similarity.
 	return distance / maxDistance
 }
