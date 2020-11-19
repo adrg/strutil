@@ -8,7 +8,7 @@ import (
 
 // SorensenDice represents the Sorensen-Dice metric for measuring the
 // similarity between sequences.
-//   For more information see https://en.wikipedia.org/wiki/Sorensen–Dice_coefficient.
+//   For more information see https://en.wikipedia.org/wiki/Sorensen-Dice_coefficient.
 type SorensenDice struct {
 	// CaseSensitive specifies if the string comparison is case sensitive.
 	CaseSensitive bool

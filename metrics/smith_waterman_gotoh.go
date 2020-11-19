@@ -8,7 +8,7 @@ import (
 
 // SmithWatermanGotoh represents the Smith-Waterman-Gotoh metric for measuring
 // the similarity between sequences.
-//     For more information see https://en.wikipedia.org/wiki/Smith-Waterman_algorithm.
+//   For more information see https://en.wikipedia.org/wiki/Smith-Waterman_algorithm.
 type SmithWatermanGotoh struct {
 	// CaseSensitive specifies if the string comparison is case sensitive.
 	CaseSensitive bool
@@ -104,6 +104,6 @@ func (m *SmithWatermanGotoh) Compare(a, b string) float64 {
 		}
 	}
 
-	// Compute similarity.
+	// Return similarity.
 	return distance / maxDistance
 }

@@ -21,6 +21,7 @@ go get github.com/adrg/strutil
 
 ## String metrics
 
+- [Hamming](#hamming)
 - [Levenshtein](#levenshtein)
 - [Jaro](#jaro)
 - [Jaro-Winkler](#jaro-winkler)
@@ -45,6 +46,23 @@ func Similarity(a, b string, metric StringMetric) float64 {
 
 All defined string metrics can be found in the
 [metrics](https://pkg.go.dev/github.com/adrg/strutil/metrics) package.
+
+#### Hamming
+
+Calculate similarity.
+```go
+similarity := strutil.Similarity("text", "test", metrics.NewHamming())
+fmt.Printf("%.2f\n", similarity) // Output: 0.75
+```
+
+Calculate distance.
+```go
+ham := metrics.NewHamming()
+fmt.Printf("%d\n", ham.Distance("one", "once")) // Output: 2
+```
+
+More information and additional examples can be found on
+[pkg.go.dev](https://pkg.go.dev/github.com/adrg/strutil/metrics#Hamming).
 
 #### Levenshtein
 
@@ -208,6 +226,7 @@ More information and additional examples can be found on
 ## References
 
 For more information see:
+- [Hamming distance](https://en.wikipedia.org/wiki/Hamming_distance)
 - [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance)
 - [Jaro-Winkler distance](https://en.wikipedia.org/wiki/Jaro-Winkler_distance)
 - [Smith-Waterman algorithm](https://en.wikipedia.org/wiki/Smith-Waterman_algorithm)
