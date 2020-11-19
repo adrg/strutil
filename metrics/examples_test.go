@@ -6,6 +6,32 @@ import (
 	"github.com/adrg/strutil/metrics"
 )
 
+func ExampleHamming() {
+	// Default options.
+	h := metrics.NewHamming()
+
+	sim := h.Compare("text", "test")
+	fmt.Printf("(text, test) similarity: %.2f\n", sim)
+
+	dist := h.Distance("text", "test")
+	fmt.Printf("(text, test) distance: %d\n", dist)
+
+	// Custom options.
+	h.CaseSensitive = false
+
+	sim = h.Compare("ONE", "once")
+	fmt.Printf("(ONE, once) similarity: %.2f\n", sim)
+
+	dist = h.Distance("one", "once")
+	fmt.Printf("(ONE, once) distance: %d\n", dist)
+
+	// Output:
+	// (text, test) similarity: 0.75
+	// (text, test) distance: 1
+	// (ONE, once) similarity: 0.50
+	// (ONE, once) distance: 2
+}
+
 func ExampleLevenshtein() {
 	// Default options.
 	lev := metrics.NewLevenshtein()
