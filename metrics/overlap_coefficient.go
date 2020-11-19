@@ -9,7 +9,7 @@ import (
 // OverlapCoefficient represents the overlap coefficient for measuring the
 // similarity between sequences. The metric is also know as the
 // Szymkiewicz-Simpson coefficient.
-//   https://en.wikipedia.org/wiki/Overlap_coefficient.
+//   For more information see https://en.wikipedia.org/wiki/Overlap_coefficient.
 type OverlapCoefficient struct {
 	// CaseSensitive specifies if the string comparison is case sensitive.
 	CaseSensitive bool

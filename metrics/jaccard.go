@@ -8,7 +8,7 @@ import (
 
 // Jaccard represents the Jaccard index for measuring the similarity
 // between sequences.
-//   https://en.wikipedia.org/wiki/Jaccard_index.
+//   For more information see https://en.wikipedia.org/wiki/Jaccard_index.
 type Jaccard struct {
 	// CaseSensitive specifies if the string comparison is case sensitive.
 	CaseSensitive bool
