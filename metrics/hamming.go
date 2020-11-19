@@ -43,17 +43,16 @@ func (m *Hamming) distance(a, b string) (int, int) {
 		a = strings.ToLower(a)
 		b = strings.ToLower(b)
 	}
-
-	// Check if both terms are empty.
 	runesA, runesB := []rune(a), []rune(b)
 
+	// Check if both terms are empty.
 	lenA, lenB := len(runesA), len(runesB)
 	if lenA == 0 && lenB == 0 {
 		return 0, 0
 	}
 
-	// If the lengths of the sequences are not equal, initialize the distance
-	// to their absolute difference.
+	// If the lengths of the sequences are not equal, the distance is
+	// initialized to their absolute difference. Otherwise, it is set to 0.
 	if lenA > lenB {
 		lenA, lenB = lenB, lenA
 	}
