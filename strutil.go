@@ -4,6 +4,7 @@ well as other string utility functions. Documentation for all the metrics can
 be found at https://pkg.go.dev/github.com/adrg/strutil/metrics.
 
 Included string metrics:
+  - Hamming
   - Jaro
   - Jaro-Winkler
   - Levenshtein
@@ -21,6 +22,7 @@ import (
 
 // StringMetric represents a metric for measuring the similarity between
 // strings. The metrics package implements the following string metrics:
+//  - Hamming
 //  - Jaro
 //  - Jaro-Winkler
 //  - Levenshtein
