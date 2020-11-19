@@ -44,28 +44,31 @@ func NewLevenshtein() *Levenshtein {
 // similarity is a number between 0 and 1. Larger similarity numbers indicate
 // closer matches.
 func (m *Levenshtein) Compare(a, b string) float64 {
-	distance := m.Distance(a, b)
-	maxLen := util.Max(utf8.RuneCountInString(a), utf8.RuneCountInString(b))
-
-	// Return distance and similarity.
+	distance, maxLen := m.distance(a, b)
 	return 1 - float64(distance)/float64(maxLen)
 }
 
 // Distance returns the Levenshtein distance between a and b. Lower distances
 // indicate closer matches. A distance of 0 means the strings are identical.
 func (m *Levenshtein) Distance(a, b string) int {
+	distance, _ := m.distance(a, b)
+	return distance
+}
+
+func (m *Levenshtein) distance(a, b string) (int, int) {
 	// Check if both terms are empty.
 	lenA, lenB := utf8.RuneCountInString(a), utf8.RuneCountInString(b)
 	if lenA == 0 && lenB == 0 {
-		return 0
+		return 0, 0
 	}
 
 	// Check if one of the terms is empty.
+	maxLen := util.Max(lenA, lenB)
 	if lenA == 0 {
-		return m.InsertCost * lenB
+		return m.InsertCost * lenB, maxLen
 	}
 	if lenB == 0 {
-		return m.DeleteCost * lenA
+		return m.DeleteCost * lenA, maxLen
 	}
 
 	// Lower terms if case insensitive comparison is specified.
@@ -99,5 +102,5 @@ func (m *Levenshtein) Distance(a, b string) int {
 		col, prevCol = prevCol, col
 	}
 
-	return prevCol[lenB]
+	return prevCol[lenB], maxLen
 }
