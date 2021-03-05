@@ -63,3 +63,18 @@ func TestLevenshtein(t *testing.T) {
 	l.ReplaceCost = 2
 	require.Equal(t, "0.60", sf(l.Compare("hello", "JELLO")))
 }
+
+func TestOperlapCoefficient(t *testing.T) {
+	o := metrics.NewOverlapCoefficient()
+	require.Equal(t, "1.00", sf(o.Compare("", "")))
+	require.Equal(t, "0.75", sf(o.Compare("night", "alright")))
+	require.Equal(t, "0.00", sf(o.Compare("aa", "")))
+	require.Equal(t, "0.00", sf(o.Compare("bb", "")))
+	o.NgramSize = 0
+	require.Equal(t, "0.75", sf(o.Compare("night", "alright")))
+	require.Equal(t, "1.00", sf(o.Compare("aa", "aaaa")))
+	o.CaseSensitive = false
+	require.Equal(t, "1.00", sf(o.Compare("aa", "AAAA")))
+	o.NgramSize = 3
+	require.Equal(t, "0.67", sf(o.Compare("night", "alright")))
+}
