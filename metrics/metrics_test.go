@@ -95,3 +95,16 @@ func TestSmithWatermanGotoh(t *testing.T) {
 	}
 	require.Equal(t, "0.94", sf(s.Compare("a pink kitten", "A KITTEN")))
 }
+
+func TestSorensenDice(t *testing.T) {
+	s := metrics.NewSorensenDice()
+	require.Equal(t, "1.00", sf(s.Compare("", "")))
+	require.Equal(t, "0.00", sf(s.Compare("a", "b")))
+	require.Equal(t, "0.60", sf(s.Compare("night", "alright")))
+	s.NgramSize = 0
+	require.Equal(t, "0.60", sf(s.Compare("night", "alright")))
+	s.CaseSensitive = false
+	require.Equal(t, "0.60", sf(s.Compare("night", "ALRIGHT")))
+	s.NgramSize = 3
+	require.Equal(t, "0.50", sf(s.Compare("night", "alright")))
+}
