@@ -78,3 +78,20 @@ func TestOperlapCoefficient(t *testing.T) {
 	o.NgramSize = 3
 	require.Equal(t, "0.67", sf(o.Compare("night", "alright")))
 }
+
+func TestSmithWatermanGotoh(t *testing.T) {
+	s := metrics.NewSmithWatermanGotoh()
+	require.Equal(t, "1.00", sf(s.Compare("", "")))
+	require.Equal(t, "0.00", sf(s.Compare("test", "")))
+	require.Equal(t, "0.00", sf(s.Compare("", "test")))
+	require.Equal(t, "0.88", sf(s.Compare("a pink kitten", "a kitten")))
+	s.Substitution = nil
+	require.Equal(t, "0.88", sf(s.Compare("a pink kitten", "a kitten")))
+	s.CaseSensitive = false
+	s.GapPenalty = -0.1
+	s.Substitution = metrics.MatchMismatch{
+		Match:    1,
+		Mismatch: -0.5,
+	}
+	require.Equal(t, "0.94", sf(s.Compare("a pink kitten", "A KITTEN")))
+}
