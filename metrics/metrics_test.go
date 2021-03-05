@@ -108,3 +108,14 @@ func TestSorensenDice(t *testing.T) {
 	s.NgramSize = 3
 	require.Equal(t, "0.50", sf(s.Compare("night", "alright")))
 }
+
+func TestMatchMismatch(t *testing.T) {
+	m := metrics.MatchMismatch{
+		Match:    2,
+		Mismatch: 1,
+	}
+	require.Equal(t, "1.00", sf(m.Compare([]rune{'a'}, 0, []rune{'b'}, 0)))
+	require.Equal(t, "2.00", sf(m.Compare([]rune{'a'}, 0, []rune{'a'}, 0)))
+	require.Equal(t, "1.00", sf(m.Min()))
+	require.Equal(t, "2.00", sf(m.Max()))
+}
