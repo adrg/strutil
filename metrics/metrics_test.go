@@ -51,3 +51,15 @@ func TestJaroWinkler(t *testing.T) {
 	j.CaseSensitive = false
 	require.Equal(t, "0.80", sf(j.Compare("sort", "SHIRT")))
 }
+
+func TestLevenshtein(t *testing.T) {
+	l := metrics.NewLevenshtein()
+	require.Equal(t, 0, l.Distance("", ""))
+	require.Equal(t, 4, l.Distance("test", ""))
+	require.Equal(t, 4, l.Distance("", "test"))
+	require.Equal(t, "0.40", sf(l.Compare("book", "brick")))
+	l.CaseSensitive = false
+	require.Equal(t, "0.80", sf(l.Compare("hello", "jello")))
+	l.ReplaceCost = 2
+	require.Equal(t, "0.60", sf(l.Compare("hello", "JELLO")))
+}
