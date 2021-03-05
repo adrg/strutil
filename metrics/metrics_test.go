@@ -41,3 +41,13 @@ func TestJaro(t *testing.T) {
 	j.CaseSensitive = false
 	require.Equal(t, "0.78", sf(j.Compare("sort", "SHIRT")))
 }
+
+func TestJaroWinkler(t *testing.T) {
+	j := metrics.NewJaroWinkler()
+	require.Equal(t, "1.00", sf(j.Compare("", "")))
+	require.Equal(t, "0.00", sf(j.Compare("test", "")))
+	require.Equal(t, "0.80", sf(j.Compare("sort", "shirt")))
+	require.Equal(t, "0.94", sf(j.Compare("charm", "charmed")))
+	j.CaseSensitive = false
+	require.Equal(t, "0.80", sf(j.Compare("sort", "SHIRT")))
+}
