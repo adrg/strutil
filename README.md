@@ -1,16 +1,32 @@
-strutil
-=======
-[![Build Status](https://github.com/adrg/strutil/workflows/CI/badge.svg)](https://github.com/adrg/strutil/actions?query=workflow%3ACI)
-[![Code coverage](https://codecov.io/gh/adrg/strutil/branch/master/graphs/badge.svg?branch=master)](https://codecov.io/gh/adrg/strutil)
-[![pkg.go.dev documentation](https://pkg.go.dev/badge/github.com/adrg/strutil)](https://pkg.go.dev/github.com/adrg/strutil)
-[![MIT license](https://img.shields.io/badge/license-MIT-red.svg?style=flat-square)](https://opensource.org/licenses/MIT)
-[![Go report card](https://goreportcard.com/badge/github.com/adrg/strutil)](https://goreportcard.com/report/github.com/adrg/strutil)
-[![GitHub issues](https://img.shields.io/github/issues/adrg/strutil)](https://github.com/adrg/strutil/issues)
-[![Buy me a coffee](https://img.shields.io/static/v1.svg?label=%20&message=Buy%20me%20a%20coffee&color=579fbf&logo=buy%20me%20a%20coffee&logoColor=white)](https://ko-fi.com/T6T72WATK)
+<h1 align="center">strutil</h1>
+
+<p align="center">
+    <a href="https://github.com/adrg/strutil/actions?query=workflow%3ACI">
+        <img alt="Build status" src="https://github.com/adrg/strutil/workflows/CI/badge.svg" />
+    </a>
+    <a href="https://codecov.io/gh/adrg/strutil">
+        <img alt="Code coverage" src="https://codecov.io/gh/adrg/strutil/branch/master/graphs/badge.svg?branch=master" />
+    </a>
+    <a href="https://pkg.go.dev/github.com/adrg/strutil">
+        <img alt="pkg.go.dev documentation" src="https://pkg.go.dev/badge/github.com/adrg/strutil" />
+    </a>
+    <a href="https://opensource.org/licenses/MIT" rel="nofollow">
+        <img alt="MIT license" src="https://img.shields.io/github/license/adrg/strutil" />
+    </a>
+    <a href="https://goreportcard.com/report/github.com/adrg/strutil">
+        <img alt="Go report card" src="https://goreportcard.com/badge/github.com/adrg/strutil" />
+    </a>
+    <a href="https://github.com/adrg/strutil/issues">
+        <img alt="GitHub issues" src="https://img.shields.io/github/issues/adrg/strutil" />
+    </a>
+    <a href="https://ko-fi.com/T6T72WATK">
+        <img alt="Buy me a coffee" src="https://img.shields.io/static/v1.svg?label=%20&message=Buy%20me%20a%20coffee&color=579fbf&logo=buy%20me%20a%20coffee&logoColor=white" />
+    </a>
+</p>
 
 strutil provides string metrics for calculating string similarity as well as
 other string utility functions.  
-Full documentation can be found at: https://pkg.go.dev/github.com/adrg/strutil.
+Full documentation can be found at https://pkg.go.dev/github.com/adrg/strutil.
 
 ## Installation
 
@@ -243,6 +259,7 @@ Contributions in the form of pull requests, issues or just general feedback,
 are always welcome. See [CONTRIBUTING.MD](CONTRIBUTING.md).
 
 ## License
+
 Copyright (c) 2019 Adrian-George Bostan.
 
 This project is licensed under the [MIT license](https://opensource.org/licenses/MIT).
