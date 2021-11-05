@@ -24,7 +24,7 @@
     </a>
 </p>
 
-strutil provides string metrics for calculating string similarity as well as
+strutil provides a collection of string metrics for calculating string similarity as well as
 other string utility functions.  
 Full documentation can be found at https://pkg.go.dev/github.com/adrg/strutil.
 
@@ -256,7 +256,8 @@ For more information see:
 ## Contributing
 
 Contributions in the form of pull requests, issues or just general feedback,
-are always welcome. See [CONTRIBUTING.MD](CONTRIBUTING.md).
+are always welcome.  
+See [CONTRIBUTING.MD](CONTRIBUTING.md).
 
 ## License
 
