@@ -42,9 +42,9 @@ func NgramMap(runes []rune, size int) (map[string]int, int) {
 
 	// Generate n-gram map.
 	limit := lenRunes - (size - 1)
-	ngrams := map[string]int{}
-	var ngramCount int
+	ngrams := make(map[string]int, limit)
 
+	var ngramCount int
 	for i := 0; i < limit; i++ {
 		ngram := string(runes[i : i+size])
 		count, _ := ngrams[ngram]
@@ -69,10 +69,10 @@ func NgramIntersection(a, b []rune, size int) (map[string]int, int, int, int) {
 	ngramsA, totalA := NgramMap(a, size)
 
 	// Calculate n-gram intersection with the second term.
-	var totalB, intersection int
-	commonNgrams := map[string]int{}
 	limit := len(b) - (size - 1)
+	commonNgrams := make(map[string]int, limit)
 
+	var totalB, intersection int
 	for i := 0; i < limit; i++ {
 		ngram := string(b[i : i+size])
 		totalB++
