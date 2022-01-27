@@ -70,7 +70,7 @@ func NgramIntersection(a, b []rune, size int) (map[string]int, int, int, int) {
 
 	// Calculate n-gram intersection with the second term.
 	limit := len(b) - (size - 1)
-	commonNgrams := make(map[string]int, limit)
+	commonNgrams := make(map[string]int, Max(limit, 0))
 
 	var totalB, intersection int
 	for i := 0; i < limit; i++ {
