@@ -18,7 +18,7 @@ package strutil
 
 import (
 	"github.com/adrg/strutil/internal/ngram"
-	"github.com/adrg/strutil/internal/util"
+	"github.com/adrg/strutil/internal/stringutil"
 )
 
 // StringMetric represents a metric for measuring the similarity between
@@ -47,19 +47,19 @@ func Similarity(a, b string, metric StringMetric) float64 {
 // CommonPrefix returns the common prefix of the specified strings. An empty
 // string is returned if the parameters have no prefix in common.
 func CommonPrefix(a, b string) string {
-	return util.CommonPrefix(a, b)
+	return stringutil.CommonPrefix(a, b)
 }
 
 // UniqueSlice returns a slice containing the unique items from the specified
 // string slice. The items in the output slice are in the order in which they
 // occur in the input slice.
 func UniqueSlice(items []string) []string {
-	return util.UniqueSlice(items)
+	return stringutil.UniqueSlice(items)
 }
 
 // SliceContains returns true if terms contains q, or false otherwise.
 func SliceContains(terms []string, q string) bool {
-	return util.SliceContains(terms, q)
+	return stringutil.SliceContains(terms, q)
 }
 
 // NgramCount returns the n-gram count of the specified size for the

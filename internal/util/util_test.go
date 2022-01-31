@@ -59,48 +59,6 @@ func TestMaxf(t *testing.T) {
 	})
 }
 
-func TestCommonPrefix(t *testing.T) {
-	requireEqual(t, [][2]interface{}{
-		{"", util.CommonPrefix("", "")},
-		{"", util.CommonPrefix("a", "")},
-		{"", util.CommonPrefix("", "b")},
-		{"", util.CommonPrefix("a", "b")},
-		{"a", util.CommonPrefix("ab", "aab")},
-		{"a", util.CommonPrefix("aab", "ab")},
-		{"aa", util.CommonPrefix("aab", "aaab")},
-		{"aa", util.CommonPrefix("aaab", "aab")},
-	})
-}
-
-func TestUniqueSlice(t *testing.T) {
-	requireEqual(t, [][2]interface{}{
-		{0, len(util.UniqueSlice(nil))},
-		{0, len(util.UniqueSlice([]string{}))},
-		{[]string{"a"}, util.UniqueSlice([]string{"a"})},
-		{[]string{"a", "b"}, util.UniqueSlice([]string{"a", "b"})},
-		{[]string{"b", "a"}, util.UniqueSlice([]string{"b", "a"})},
-		{[]string{"a"}, util.UniqueSlice([]string{"a", "a"})},
-		{[]string{"b", "a"}, util.UniqueSlice([]string{"b", "a", "a"})},
-		{[]string{"a", "b"}, util.UniqueSlice([]string{"a", "a", "b"})},
-		{[]string{"a", "b"}, util.UniqueSlice([]string{"a", "a", "a", "b"})},
-		{[]string{"b", "a"}, util.UniqueSlice([]string{"b", "a", "a", "a"})},
-		{[]string{"a", "b"}, util.UniqueSlice([]string{"a", "b", "b", "a"})},
-		{[]string{"a", "b"}, util.UniqueSlice([]string{"a", "b", "a", "b"})},
-	})
-}
-
-func TestSliceContains(t *testing.T) {
-	requireEqual(t, [][2]interface{}{
-		{false, util.SliceContains(nil, "")},
-		{false, util.SliceContains(nil, "a")},
-		{false, util.SliceContains([]string{}, "")},
-		{false, util.SliceContains([]string{}, "a")},
-		{true, util.SliceContains([]string{"a", "b"}, "a")},
-		{true, util.SliceContains([]string{"b", "a"}, "a")},
-		{false, util.SliceContains([]string{"b", "a"}, "c")},
-	})
-}
-
 func requireEqual(t *testing.T, inputs [][2]interface{}) {
 	t.Helper()
 

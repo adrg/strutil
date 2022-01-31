@@ -4,7 +4,7 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	"github.com/adrg/strutil/internal/util"
+	"github.com/adrg/strutil/internal/stringutil"
 )
 
 // JaroWinkler represents the Jaro-Winkler metric for measuring the similarity
@@ -36,7 +36,7 @@ func (m *JaroWinkler) Compare(a, b string) float64 {
 	}
 
 	// Calculate common prefix.
-	lenPrefix := utf8.RuneCountInString(util.CommonPrefix(a, b))
+	lenPrefix := utf8.RuneCountInString(stringutil.CommonPrefix(a, b))
 	if lenPrefix > 4 {
 		lenPrefix = 4
 	}
