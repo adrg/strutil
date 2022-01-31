@@ -40,6 +40,15 @@ func ExampleSliceContains() {
 	// ([a b c], d): false
 }
 
+func ExampleNgramCount() {
+	fmt.Println("abbcd n-gram count (size 2):", strutil.NgramCount("abbcd", 2))
+	fmt.Println("abbcd n-gram count (size 3):", strutil.NgramCount("abbcd", 3))
+
+	// Output:
+	// abbcd n-gram count (size 2): 4
+	// abbcd n-gram count (size 3): 3
+}
+
 func ExampleNgrams() {
 	fmt.Println("abbcd n-grams (size 2):", strutil.Ngrams("abbcd", 2))
 	fmt.Println("abbcd n-grams (size 3):", strutil.Ngrams("abbcd", 3))
