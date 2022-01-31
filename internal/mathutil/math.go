@@ -1,4 +1,4 @@
-package util
+package mathutil
 
 // Min returns the value of the smallest argument.
 func Min(args ...int) int {

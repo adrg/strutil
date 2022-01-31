@@ -4,7 +4,7 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	"github.com/adrg/strutil/internal/util"
+	"github.com/adrg/strutil/internal/mathutil"
 )
 
 // Jaro represents the Jaro metric for measuring the similarity
@@ -46,7 +46,7 @@ func (m *Jaro) Compare(a, b string) float64 {
 	}
 
 	// Get matching runes.
-	halfLen := util.Max(0, util.Max(lenA, lenB)/2)
+	halfLen := mathutil.Max(0, mathutil.Max(lenA, lenB)/2)
 	mrA := matchingRunes(a, b, halfLen)
 	mrB := matchingRunes(b, a, halfLen)
 
@@ -67,8 +67,8 @@ func matchingRunes(a, b string, limit int) []rune {
 	lenB := len(runesB)
 
 	for i, r := range a {
-		end := util.Min(i+limit+1, lenB)
-		for j := util.Max(0, i-limit); j < end; j++ {
+		end := mathutil.Min(i+limit+1, lenB)
+		for j := mathutil.Max(0, i-limit); j < end; j++ {
 			if r == runesB[j] && runesB[j] != -1 {
 				common = append(common, runesB[j])
 				runesB[j] = -1
@@ -83,7 +83,7 @@ func matchingRunes(a, b string, limit int) []rune {
 func transpositions(a, b []rune) int {
 	var count int
 
-	minLen := util.Min(len(a), len(b))
+	minLen := mathutil.Min(len(a), len(b))
 	for i := 0; i < minLen; i++ {
 		if a[i] != b[i] {
 			count++

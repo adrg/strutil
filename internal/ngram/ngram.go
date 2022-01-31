@@ -1,12 +1,12 @@
 package ngram
 
-import "github.com/adrg/strutil/internal/util"
+import "github.com/adrg/strutil/internal/mathutil"
 
 // Count returns the n-gram count of the specified size for the
 // provided term. An n-gram size of 1 is used if the provided size is
 // less than or equal to 0.
 func Count(runes []rune, size int) int {
-	return util.Max(len(runes)-(util.Max(size, 1)-1), 0)
+	return mathutil.Max(len(runes)-(mathutil.Max(size, 1)-1), 0)
 }
 
 // Slice returns all the n-grams of the specified size for the provided term.
@@ -15,7 +15,7 @@ func Count(runes []rune, size int) int {
 // or equal to 0.
 func Slice(runes []rune, size int) []string {
 	// Use an n-gram size of 1 if the provided size is invalid.
-	size = util.Max(size, 1)
+	size = mathutil.Max(size, 1)
 
 	// Check if term length is too small.
 	lenRunes := len(runes)
@@ -41,7 +41,7 @@ func Slice(runes []rune, size int) []string {
 // An n-gram size of 1 is used if the provided size is less than or equal to 0.
 func Map(runes []rune, size int) (map[string]int, int) {
 	// Use an n-gram size of 1 if the provided size is invalid.
-	size = util.Max(size, 1)
+	size = mathutil.Max(size, 1)
 
 	// Check if term length is too small.
 	lenRunes := len(runes)
@@ -72,14 +72,14 @@ func Map(runes []rune, size int) (map[string]int, int) {
 // than or equal to 0.
 func Intersection(a, b []rune, size int) (map[string]int, int, int, int) {
 	// Use an n-gram size of 1 if the provided size is invalid.
-	size = util.Max(size, 1)
+	size = mathutil.Max(size, 1)
 
 	// Compute the n-grams of the first term.
 	ngramsA, totalA := Map(a, size)
 
 	// Calculate n-gram intersection with the second term.
 	limit := len(b) - (size - 1)
-	commonNgrams := make(map[string]int, util.Max(limit, 0))
+	commonNgrams := make(map[string]int, mathutil.Max(limit, 0))
 
 	var totalB, intersection int
 	for i := 0; i < limit; i++ {

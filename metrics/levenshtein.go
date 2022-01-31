@@ -4,7 +4,7 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	"github.com/adrg/strutil/internal/util"
+	"github.com/adrg/strutil/internal/mathutil"
 )
 
 // Levenshtein represents the Levenshtein metric for measuring the similarity
@@ -63,7 +63,7 @@ func (m *Levenshtein) distance(a, b string) (int, int) {
 	}
 
 	// Check if one of the terms is empty.
-	maxLen := util.Max(lenA, lenB)
+	maxLen := mathutil.Max(lenA, lenB)
 	if lenA == 0 {
 		return m.InsertCost * lenB, maxLen
 	}
@@ -96,7 +96,7 @@ func (m *Levenshtein) distance(a, b string) (int, int) {
 				subCost += m.ReplaceCost
 			}
 
-			col[j+1] = util.Min(delCost, insCost, subCost)
+			col[j+1] = mathutil.Min(delCost, insCost, subCost)
 		}
 
 		col, prevCol = prevCol, col
