@@ -3,7 +3,7 @@ package metrics
 import (
 	"strings"
 
-	"github.com/adrg/strutil/internal/util"
+	"github.com/adrg/strutil/internal/ngram"
 )
 
 // SorensenDice represents the Sorensen-Dice metric for measuring the
@@ -53,7 +53,7 @@ func (m *SorensenDice) Compare(a, b string) float64 {
 	}
 
 	// Calculate n-gram intersection and union.
-	_, common, totalA, totalB := util.NgramIntersection(runesA, runesB, size)
+	_, common, totalA, totalB := ngram.Intersection(runesA, runesB, size)
 
 	total := totalA + totalB
 	if total == 0 {

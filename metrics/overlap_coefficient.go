@@ -3,6 +3,7 @@ package metrics
 import (
 	"strings"
 
+	"github.com/adrg/strutil/internal/ngram"
 	"github.com/adrg/strutil/internal/util"
 )
 
@@ -54,7 +55,7 @@ func (m *OverlapCoefficient) Compare(a, b string) float64 {
 	}
 
 	// Calculate n-gram intersection and minimum subset.
-	_, common, totalA, totalB := util.NgramIntersection(runesA, runesB, size)
+	_, common, totalA, totalB := ngram.Intersection(runesA, runesB, size)
 
 	min := util.Min(totalA, totalB)
 	if min == 0 {

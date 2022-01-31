@@ -17,6 +17,7 @@ Included string metrics:
 package strutil
 
 import (
+	"github.com/adrg/strutil/internal/ngram"
 	"github.com/adrg/strutil/internal/util"
 )
 
@@ -65,7 +66,7 @@ func SliceContains(terms []string, q string) bool {
 // provided term. An n-gram size of 1 is used if the provided size is
 // less than or equal to 0.
 func NgramCount(term string, size int) int {
-	return util.NgramCount([]rune(term), size)
+	return ngram.Count([]rune(term), size)
 }
 
 // Ngrams returns all the n-grams of the specified size for the provided term.
@@ -73,7 +74,7 @@ func NgramCount(term string, size int) int {
 // input term. An n-gram size of 1 is used if the provided size is less than or
 // equal to 0.
 func Ngrams(term string, size int) []string {
-	return util.Ngrams([]rune(term), size)
+	return ngram.Slice([]rune(term), size)
 }
 
 // NgramMap returns a map of all n-grams of the specified size for the provided
@@ -81,7 +82,7 @@ func Ngrams(term string, size int) []string {
 // of n-grams, which is the sum of all the values in the output map.
 // An n-gram size of 1 is used if the provided size is less than or equal to 0.
 func NgramMap(term string, size int) (map[string]int, int) {
-	return util.NgramMap([]rune(term), size)
+	return ngram.Map([]rune(term), size)
 }
 
 // NgramIntersection returns a map of the n-grams of the specified size found
@@ -91,5 +92,5 @@ func NgramMap(term string, size int) (map[string]int, int) {
 // the second term. An n-gram size of 1 is used if the provided size is less
 // than or equal to 0.
 func NgramIntersection(a, b string, size int) (map[string]int, int, int, int) {
-	return util.NgramIntersection([]rune(a), []rune(b), size)
+	return ngram.Intersection([]rune(a), []rune(b), size)
 }

@@ -1,19 +1,21 @@
-package util
+package ngram
 
-// NgramCount returns the n-gram count of the specified size for the
+import "github.com/adrg/strutil/internal/util"
+
+// Count returns the n-gram count of the specified size for the
 // provided term. An n-gram size of 1 is used if the provided size is
 // less than or equal to 0.
-func NgramCount(runes []rune, size int) int {
-	return Max(len(runes)-(Max(size, 1)-1), 0)
+func Count(runes []rune, size int) int {
+	return util.Max(len(runes)-(util.Max(size, 1)-1), 0)
 }
 
-// Ngrams returns all the n-grams of the specified size for the provided term.
+// Slice returns all the n-grams of the specified size for the provided term.
 // The n-grams in the output slice are in the order in which they occur in the
-// input term. An n-gram size of 1 is used if the provided size is less than or
-// equal to 0.
-func Ngrams(runes []rune, size int) []string {
+// input term. An n-gram size of 1 is used if the provided size is less than
+// or equal to 0.
+func Slice(runes []rune, size int) []string {
 	// Use an n-gram size of 1 if the provided size is invalid.
-	size = Max(size, 1)
+	size = util.Max(size, 1)
 
 	// Check if term length is too small.
 	lenRunes := len(runes)
@@ -33,13 +35,13 @@ func Ngrams(runes []rune, size int) []string {
 	return ngrams
 }
 
-// NgramMap returns a map of all n-grams of the specified size for the provided
-// term, along with their frequency. The function also returns the total number
-// of n-grams, which is the sum of all the values in the output map.
+// Map returns a map of all n-grams of the specified size for the provided
+// term, along with their frequency. The function also returns the total
+// number of n-grams, which is the sum of all the values in the output map.
 // An n-gram size of 1 is used if the provided size is less than or equal to 0.
-func NgramMap(runes []rune, size int) (map[string]int, int) {
+func Map(runes []rune, size int) (map[string]int, int) {
 	// Use an n-gram size of 1 if the provided size is invalid.
-	size = Max(size, 1)
+	size = util.Max(size, 1)
 
 	// Check if term length is too small.
 	lenRunes := len(runes)
@@ -62,22 +64,22 @@ func NgramMap(runes []rune, size int) (map[string]int, int) {
 	return ngrams, ngramCount
 }
 
-// NgramIntersection returns a map of the n-grams of the specified size found
+// Intersection returns a map of the n-grams of the specified size found
 // in both terms, along with their frequency. The function also returns the
 // number of common n-grams (the sum of all the values in the output map), the
 // total number of n-grams in the first term and the total number of n-grams in
 // the second term. An n-gram size of 1 is used if the provided size is less
 // than or equal to 0.
-func NgramIntersection(a, b []rune, size int) (map[string]int, int, int, int) {
+func Intersection(a, b []rune, size int) (map[string]int, int, int, int) {
 	// Use an n-gram size of 1 if the provided size is invalid.
-	size = Max(size, 1)
+	size = util.Max(size, 1)
 
 	// Compute the n-grams of the first term.
-	ngramsA, totalA := NgramMap(a, size)
+	ngramsA, totalA := Map(a, size)
 
 	// Calculate n-gram intersection with the second term.
 	limit := len(b) - (size - 1)
-	commonNgrams := make(map[string]int, Max(limit, 0))
+	commonNgrams := make(map[string]int, util.Max(limit, 0))
 
 	var totalB, intersection int
 	for i := 0; i < limit; i++ {
