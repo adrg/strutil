@@ -61,6 +61,13 @@ func SliceContains(terms []string, q string) bool {
 	return util.SliceContains(terms, q)
 }
 
+// NgramCount returns the n-gram count of the specified size for the
+// provided term. An n-gram size of 1 is used if the provided size is
+// less than or equal to 0.
+func NgramCount(term string, size int) int {
+	return util.NgramCount([]rune(term), size)
+}
+
 // Ngrams returns all the n-grams of the specified size for the provided term.
 // The n-grams in the output slice are in the order in which they occur in the
 // input term. An n-gram size of 1 is used if the provided size is less than or
