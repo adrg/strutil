@@ -101,6 +101,27 @@ func TestSliceContains(t *testing.T) {
 	})
 }
 
+func TestNgramCount(t *testing.T) {
+	requireEqual(t, [][2]interface{}{
+		{0, util.NgramCount(nil, -1)},
+		{0, util.NgramCount(nil, 0)},
+		{0, util.NgramCount(nil, 1)},
+		{0, util.NgramCount([]rune{}, -1)},
+		{0, util.NgramCount([]rune{}, 0)},
+		{0, util.NgramCount([]rune{}, 1)},
+		{6, util.NgramCount([]rune("abbabb"), -1)},
+		{6, util.NgramCount([]rune("abbabb"), 0)},
+		{6, util.NgramCount([]rune("abbabb"), 1)},
+		{5, util.NgramCount([]rune("abbabb"), 2)},
+		{4, util.NgramCount([]rune("abbabb"), 3)},
+		{3, util.NgramCount([]rune("abbabb"), 4)},
+		{2, util.NgramCount([]rune("abbabb"), 5)},
+		{1, util.NgramCount([]rune("abbabb"), 6)},
+		{0, util.NgramCount([]rune("abbabb"), 7)},
+		{0, util.NgramCount([]rune("abbabb"), 8)},
+	})
+}
+
 func TestNgrams(t *testing.T) {
 	requireEqual(t, [][2]interface{}{
 		{0, len(util.Ngrams(nil, -1))},
@@ -144,6 +165,10 @@ func TestNgrams(t *testing.T) {
 		{
 			0,
 			len(util.Ngrams([]rune("abcdef"), 7)),
+		},
+		{
+			0,
+			len(util.Ngrams([]rune("abcdef"), 8)),
 		},
 	})
 }
@@ -233,6 +258,12 @@ func TestNgramMap(t *testing.T) {
 		{
 			term:     []rune("abbabb"),
 			size:     7,
+			expMap:   map[string]int{},
+			expTotal: 0,
+		},
+		{
+			term:     []rune("abbabb"),
+			size:     8,
 			expMap:   map[string]int{},
 			expTotal: 0,
 		},
@@ -372,6 +403,18 @@ func TestNgramIntersection(t *testing.T) {
 			size:   8,
 			expMap: map[string]int{},
 		},
+		{
+			a:      []rune("ababbaa"),
+			b:      []rune("aabbaa"),
+			size:   9,
+			expMap: map[string]int{},
+		},
+		{
+			a:      []rune("aabbaa"),
+			b:      []rune("ababbaa"),
+			size:   9,
+			expMap: map[string]int{},
+		},
 	}
 
 	for _, input := range inputs {
@@ -384,6 +427,8 @@ func TestNgramIntersection(t *testing.T) {
 }
 
 func requireEqual(t *testing.T, inputs [][2]interface{}) {
+	t.Helper()
+
 	for _, input := range inputs {
 		require.Equal(t, input[0], input[1])
 	}
