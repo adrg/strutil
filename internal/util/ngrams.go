@@ -1,5 +1,12 @@
 package util
 
+// NgramCount returns the n-gram count of the specified size for the
+// provided term. An n-gram size of 1 is used if the provided size is
+// less than or equal to 0.
+func NgramCount(runes []rune, size int) int {
+	return len(runes) - (Max(size, 1) - 1)
+}
+
 // Ngrams returns all the n-grams of the specified size for the provided term.
 // The n-grams in the output slice are in the order in which they occur in the
 // input term. An n-gram size of 1 is used if the provided size is less than or
