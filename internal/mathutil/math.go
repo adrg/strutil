@@ -1,6 +1,7 @@
 package mathutil
 
-// Min returns the value of the smallest argument.
+// Min returns the value of the smallest argument,
+// or 0 if no arguments are provided.
 func Min(args ...int) int {
 	if len(args) == 0 {
 		return 0
@@ -19,7 +20,8 @@ func Min(args ...int) int {
 	return min
 }
 
-// Max returns the value of the largest argument.
+// Max returns the value of the largest argument,
+// or 0 if no arguments are provided.
 func Max(args ...int) int {
 	if len(args) == 0 {
 		return 0
@@ -38,7 +40,8 @@ func Max(args ...int) int {
 	return max
 }
 
-// Minf returns the value of the smallest argument.
+// Minf returns the value of the smallest argument,
+// or 0 if no arguments are provided.
 func Minf(args ...float64) float64 {
 	if len(args) == 0 {
 		return 0
@@ -57,7 +60,8 @@ func Minf(args ...float64) float64 {
 	return min
 }
 
-// Maxf returns the value of the largest argument.
+// Maxf returns the value of the largest argument,
+// or 0 if no arguments are provided.
 func Maxf(args ...float64) float64 {
 	if len(args) == 0 {
 		return 0

@@ -66,10 +66,10 @@ func Map(runes []rune, size int) (map[string]int, int) {
 
 // Intersection returns a map of the n-grams of the specified size found
 // in both terms, along with their frequency. The function also returns the
-// number of common n-grams (the sum of all the values in the output map), the
-// total number of n-grams in the first term and the total number of n-grams in
-// the second term. An n-gram size of 1 is used if the provided size is less
-// than or equal to 0.
+// number of common n-grams (the sum of all the values in the output map),
+// the total number of n-grams in the first term and the total number of
+// n-grams in the second term. An n-gram size of 1 is used if the provided
+// size is less than or equal to 0.
 func Intersection(a, b []rune, size int) (map[string]int, int, int, int) {
 	// Use an n-gram size of 1 if the provided size is invalid.
 	size = mathutil.Max(size, 1)
