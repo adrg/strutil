@@ -17,6 +17,11 @@ func TestCommonPrefix(t *testing.T) {
 		{"a", stringutil.CommonPrefix("aab", "ab")},
 		{"aa", stringutil.CommonPrefix("aab", "aaab")},
 		{"aa", stringutil.CommonPrefix("aaab", "aab")},
+		{"忧郁的乌龟", stringutil.CommonPrefix("忧郁的乌龟", "忧郁的乌龟")},
+		{"忧郁的", stringutil.CommonPrefix("忧郁的", "忧郁的乌龟")},
+		{"忧郁的", stringutil.CommonPrefix("忧郁的乌龟", "忧郁的")},
+		{"", stringutil.CommonPrefix("忧郁的乌龟", "郁的乌龟")},
+		{"", stringutil.CommonPrefix("郁的乌龟", "忧郁的乌龟")},
 	})
 }
 
