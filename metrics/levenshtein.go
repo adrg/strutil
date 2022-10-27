@@ -76,6 +76,7 @@ func (m *Levenshtein) distance(a, b string) (int, int) {
 		a = strings.ToLower(a)
 		b = strings.ToLower(b)
 	}
+	runesA, runesB := []rune(a), []rune(b)
 
 	// Initialize cost slice.
 	prevCol := make([]int, lenB+1)
@@ -92,7 +93,7 @@ func (m *Levenshtein) distance(a, b string) (int, int) {
 			insCost := col[j] + m.InsertCost
 
 			subCost := prevCol[j]
-			if a[i] != b[j] {
+			if runesA[i] != runesB[j] {
 				subCost += m.ReplaceCost
 			}
 
