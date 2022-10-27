@@ -62,22 +62,25 @@ func (m *Jaro) Compare(a, b string) float64 {
 }
 
 func matchingRunes(a, b string, limit int) []rune {
-	common := []rune{}
-	runesB := []rune(b)
-	lenB := len(runesB)
+	var (
+		runesA      = []rune(a)
+		runesB      = []rune(b)
+		runesCommon = []rune{}
+		lenB        = len(runesB)
+	)
 
-	for i, r := range a {
+	for i, r := range runesA {
 		end := mathutil.Min(i+limit+1, lenB)
 		for j := mathutil.Max(0, i-limit); j < end; j++ {
 			if r == runesB[j] && runesB[j] != -1 {
-				common = append(common, runesB[j])
+				runesCommon = append(runesCommon, runesB[j])
 				runesB[j] = -1
 				break
 			}
 		}
 	}
 
-	return common
+	return runesCommon
 }
 
 func transpositions(a, b []rune) int {
