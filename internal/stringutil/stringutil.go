@@ -11,11 +11,10 @@ func CommonPrefix(first, second string) string {
 
 	var commonLen int
 	sRunes := []rune(second)
-	for i, r := range first {
-		if r != sRunes[i] {
+	for _, r := range first {
+		if r != sRunes[commonLen] {
 			break
 		}
-
 		commonLen++
 	}
 
