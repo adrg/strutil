@@ -54,6 +54,11 @@ func TestJaroWinkler(t *testing.T) {
 	require.Equal(t, "0.80", sf(j.Compare("sort", "SHIRT")))
 }
 
+func TestJaroWinklerWithNonAscii(t *testing.T) {
+	j := metrics.NewJaroWinkler()
+	require.Equal(t, "1.00", sf(j.Compare("ab\u2019c", "ab\u2019c")))
+}
+
 func TestLevenshtein(t *testing.T) {
 	l := metrics.NewLevenshtein()
 	require.Equal(t, 0, l.Distance("", ""))

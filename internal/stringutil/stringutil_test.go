@@ -17,6 +17,9 @@ func TestCommonPrefix(t *testing.T) {
 		{"a", stringutil.CommonPrefix("aab", "ab")},
 		{"aa", stringutil.CommonPrefix("aab", "aaab")},
 		{"aa", stringutil.CommonPrefix("aaab", "aab")},
+		{"\u2019", stringutil.CommonPrefix("\u2019a", "\u2019b")},
+		{"a\u2019bc", stringutil.CommonPrefix("a\u2019bcd", "a\u2019bce")},
+		{"abc", stringutil.CommonPrefix("abc\u2019d", "abc\u2020d")},
 	})
 }
 
