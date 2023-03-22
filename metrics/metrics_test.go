@@ -17,6 +17,9 @@ func TestHamming(t *testing.T) {
 	require.Equal(t, 0, h.Distance("", ""))
 	require.Equal(t, "0.75", sf(h.Compare("text", "test")))
 	require.Equal(t, "0.50", sf(h.Compare("once", "one")))
+	require.Equal(t, "1.00", sf(h.Compare("ab\u2019c", "ab\u2019c")))
+	require.Equal(t, "0.75", sf(h.Compare("ab\u2019d", "ab\u2019c")))
+	require.Equal(t, "0.75", sf(h.Compare("ab\u2018c", "ab\u2019c")))
 	h.CaseSensitive = false
 	require.Equal(t, "0.50", sf(h.Compare("one", "ONCE")))
 }
@@ -25,6 +28,9 @@ func TestJaccard(t *testing.T) {
 	j := metrics.NewJaccard()
 	require.Equal(t, "1.00", sf(j.Compare("", "")))
 	require.Equal(t, "0.00", sf(j.Compare("a", "b")))
+	require.Equal(t, "1.00", sf(j.Compare("ab\u2019c", "ab\u2019c")))
+	require.Equal(t, "0.50", sf(j.Compare("ab\u2019d", "ab\u2019c")))
+	require.Equal(t, "0.20", sf(j.Compare("ab\u2018c", "ab\u2019c")))
 	require.Equal(t, "0.43", sf(j.Compare("night", "alright")))
 	j.NgramSize = 0
 	require.Equal(t, "0.43", sf(j.Compare("night", "alright")))
@@ -37,6 +43,9 @@ func TestJaro(t *testing.T) {
 	j := metrics.NewJaro()
 	require.Equal(t, "1.00", sf(j.Compare("", "")))
 	require.Equal(t, "0.00", sf(j.Compare("test", "")))
+	require.Equal(t, "1.00", sf(j.Compare("ab\u2019c", "ab\u2019c")))
+	require.Equal(t, "0.83", sf(j.Compare("ab\u2019d", "ab\u2019c")))
+	require.Equal(t, "0.83", sf(j.Compare("ab\u2018c", "ab\u2019c")))
 	require.Equal(t, "0.00", sf(j.Compare("a", "b")))
 	require.Equal(t, "0.78", sf(j.Compare("sort", "shirt")))
 	require.Equal(t, "0.64", sf(j.Compare("sort", "report")))
@@ -48,6 +57,9 @@ func TestJaroWinkler(t *testing.T) {
 	j := metrics.NewJaroWinkler()
 	require.Equal(t, "1.00", sf(j.Compare("", "")))
 	require.Equal(t, "0.00", sf(j.Compare("test", "")))
+	require.Equal(t, "1.00", sf(j.Compare("ab\u2019c", "ab\u2019c")))
+	require.Equal(t, "0.88", sf(j.Compare("ab\u2019d", "ab\u2019c")))
+	require.Equal(t, "0.87", sf(j.Compare("ab\u2018c", "ab\u2019c")))
 	require.Equal(t, "0.80", sf(j.Compare("sort", "shirt")))
 	require.Equal(t, "0.94", sf(j.Compare("charm", "charmed")))
 	j.CaseSensitive = false
@@ -59,11 +71,19 @@ func TestLevenshtein(t *testing.T) {
 	require.Equal(t, 0, l.Distance("", ""))
 	require.Equal(t, 4, l.Distance("test", ""))
 	require.Equal(t, 4, l.Distance("", "test"))
+	require.Equal(t, 0, l.Distance("ab\u2019c", "ab\u2019c"))
+	require.Equal(t, 1, l.Distance("ab\u2019d", "ab\u2019c"))
+	require.Equal(t, 1, l.Distance("ab\u2018c", "ab\u2019c"))
 	require.Equal(t, "0.40", sf(l.Compare("book", "brick")))
+	require.Equal(t, "0.75", sf(l.Compare("ab\u2019d", "ab\u2019c")))
+	require.Equal(t, "0.75", sf(l.Compare("ab\u2018c", "ab\u2019c")))
 	l.CaseSensitive = false
 	require.Equal(t, "0.80", sf(l.Compare("hello", "jello")))
 	l.ReplaceCost = 2
 	require.Equal(t, "0.60", sf(l.Compare("hello", "JELLO")))
+	require.Equal(t, "1.00", sf(l.Compare("ab\u2019c", "ab\u2019c")))
+	require.Equal(t, "0.50", sf(l.Compare("ab\u2019d", "ab\u2019c")))
+	require.Equal(t, "0.50", sf(l.Compare("ab\u2018c", "ab\u2019c")))
 }
 
 func TestOperlapCoefficient(t *testing.T) {
@@ -72,6 +92,9 @@ func TestOperlapCoefficient(t *testing.T) {
 	require.Equal(t, "0.75", sf(o.Compare("night", "alright")))
 	require.Equal(t, "0.00", sf(o.Compare("aa", "")))
 	require.Equal(t, "0.00", sf(o.Compare("bb", "")))
+	require.Equal(t, "1.00", sf(o.Compare("ab\u2019c", "ab\u2019c")))
+	require.Equal(t, "0.67", sf(o.Compare("ab\u2019d", "ab\u2019c")))
+	require.Equal(t, "0.33", sf(o.Compare("ab\u2018c", "ab\u2019c")))
 	o.NgramSize = 0
 	require.Equal(t, "0.75", sf(o.Compare("night", "alright")))
 	require.Equal(t, "1.00", sf(o.Compare("aa", "aaaa")))
@@ -87,6 +110,9 @@ func TestSmithWatermanGotoh(t *testing.T) {
 	require.Equal(t, "0.00", sf(s.Compare("test", "")))
 	require.Equal(t, "0.00", sf(s.Compare("", "test")))
 	require.Equal(t, "0.88", sf(s.Compare("a pink kitten", "a kitten")))
+	require.Equal(t, "1.00", sf(s.Compare("ab\u2019c", "ab\u2019c")))
+	require.Equal(t, "0.75", sf(s.Compare("ab\u2019d", "ab\u2019c")))
+	require.Equal(t, "0.50", sf(s.Compare("ab\u2018c", "ab\u2019c")))
 	s.Substitution = nil
 	require.Equal(t, "0.88", sf(s.Compare("a pink kitten", "a kitten")))
 	s.CaseSensitive = false
@@ -103,6 +129,9 @@ func TestSorensenDice(t *testing.T) {
 	require.Equal(t, "1.00", sf(s.Compare("", "")))
 	require.Equal(t, "0.00", sf(s.Compare("a", "b")))
 	require.Equal(t, "0.60", sf(s.Compare("night", "alright")))
+	require.Equal(t, "1.00", sf(s.Compare("ab\u2019c", "ab\u2019c")))
+	require.Equal(t, "0.67", sf(s.Compare("ab\u2019d", "ab\u2019c")))
+	require.Equal(t, "0.33", sf(s.Compare("ab\u2018c", "ab\u2019c")))
 	s.NgramSize = 0
 	require.Equal(t, "0.60", sf(s.Compare("night", "alright")))
 	s.CaseSensitive = false
