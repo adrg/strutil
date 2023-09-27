@@ -2,7 +2,6 @@ package metrics
 
 import (
 	"strings"
-	"unicode/utf8"
 
 	"github.com/adrg/strutil/internal/mathutil"
 )
@@ -56,8 +55,15 @@ func (m *Levenshtein) Distance(a, b string) int {
 }
 
 func (m *Levenshtein) distance(a, b string) (int, int) {
+	// Lower terms if case insensitive comparison is specified.
+	if !m.CaseSensitive {
+		a = strings.ToLower(a)
+		b = strings.ToLower(b)
+	}
+	runesA, runesB := []rune(a), []rune(b)
+
 	// Check if both terms are empty.
-	lenA, lenB := utf8.RuneCountInString(a), utf8.RuneCountInString(b)
+	lenA, lenB := len(runesA), len(runesB)
 	if lenA == 0 && lenB == 0 {
 		return 0, 0
 	}
@@ -70,13 +76,6 @@ func (m *Levenshtein) distance(a, b string) (int, int) {
 	if lenB == 0 {
 		return m.DeleteCost * lenA, maxLen
 	}
-
-	// Lower terms if case insensitive comparison is specified.
-	if !m.CaseSensitive {
-		a = strings.ToLower(a)
-		b = strings.ToLower(b)
-	}
-	runesA, runesB := []rune(a), []rune(b)
 
 	// Initialize cost slice.
 	prevCol := make([]int, lenB+1)
