@@ -1,17 +1,15 @@
 package stringutil
 
-import "unicode/utf8"
-
 // CommonPrefix returns the common prefix of the specified strings. An empty
 // string is returned if the parameters have no prefix in common.
 func CommonPrefix(first, second string) string {
-	if utf8.RuneCountInString(first) > utf8.RuneCountInString(second) {
-		first, second = second, first
+	fRunes, sRunes := []rune(first), []rune(second)
+	if len(fRunes) > len(sRunes) {
+		fRunes, sRunes = sRunes, fRunes
 	}
 
 	var commonLen int
-	sRunes := []rune(second)
-	for i, r := range first {
+	for i, r := range fRunes {
 		if r != sRunes[i] {
 			break
 		}
