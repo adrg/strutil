@@ -56,7 +56,7 @@ func Map(runes []rune, size int) (map[string]int, int) {
 	var ngramCount int
 	for i := 0; i < limit; i++ {
 		ngram := string(runes[i : i+size])
-		count, _ := ngrams[ngram]
+		count := ngrams[ngram]
 		ngrams[ngram] = count + 1
 		ngramCount++
 	}
@@ -94,7 +94,7 @@ func Intersection(a, b []rune, size int) (map[string]int, int, int, int) {
 
 			// Update common n-grams map with the matched n-gram and its
 			// frequency.
-			count, _ = commonNgrams[ngram]
+			count = commonNgrams[ngram]
 			commonNgrams[ngram] = count + 1
 		}
 	}
