@@ -12,7 +12,7 @@ jobs:
   lint:
     strategy:
       matrix:
-        go: ['1.21']
+        go: [stable]
         os: [ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
