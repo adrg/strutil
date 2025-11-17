@@ -3,7 +3,7 @@ package metrics
 import (
 	"strings"
 
-	"github.com/adrg/strutil/internal/ngram"
+	"github.com/dorzzz/strutil/internal/ngram"
 )
 
 // SorensenDice represents the Sorensen-Dice metric for measuring the

@@ -3,7 +3,7 @@ package mathutil_test
 import (
 	"testing"
 
-	"github.com/adrg/strutil/internal/mathutil"
+	"github.com/dorzzz/strutil/internal/mathutil"
 	"github.com/stretchr/testify/require"
 )
 
