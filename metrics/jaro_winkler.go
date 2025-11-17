@@ -4,7 +4,7 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	"github.com/adrg/strutil/internal/stringutil"
+	"github.com/dorzzz/strutil/internal/stringutil"
 )
 
 // JaroWinkler represents the Jaro-Winkler metric for measuring the similarity

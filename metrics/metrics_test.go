@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/adrg/strutil/metrics"
+	"github.com/dorzzz/strutil/metrics"
 	"github.com/stretchr/testify/require"
 )
 

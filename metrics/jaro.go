@@ -4,7 +4,7 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	"github.com/adrg/strutil/internal/mathutil"
+	"github.com/dorzzz/strutil/internal/mathutil"
 )
 
 // Jaro represents the Jaro metric for measuring the similarity

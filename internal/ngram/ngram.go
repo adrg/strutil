@@ -1,6 +1,6 @@
 package ngram
 
-import "github.com/adrg/strutil/internal/mathutil"
+import "github.com/dorzzz/strutil/internal/mathutil"
 
 // Count returns the n-gram count of the specified size for the
 // provided term. An n-gram size of 1 is used if the provided size is

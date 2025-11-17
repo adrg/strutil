@@ -3,7 +3,7 @@ package metrics
 import (
 	"strings"
 
-	"github.com/adrg/strutil/internal/mathutil"
+	"github.com/dorzzz/strutil/internal/mathutil"
 )
 
 // Levenshtein represents the Levenshtein metric for measuring the similarity

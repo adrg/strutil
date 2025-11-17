@@ -3,7 +3,7 @@ package metrics_test
 import (
 	"fmt"
 
-	"github.com/adrg/strutil/metrics"
+	"github.com/dorzzz/strutil/metrics"
 )
 
 func ExampleHamming() {

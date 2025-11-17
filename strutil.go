@@ -1,7 +1,7 @@
 /*
 Package strutil provides string metrics for calculating string similarity as
 well as other string utility functions. Documentation for all the metrics can
-be found at https://pkg.go.dev/github.com/adrg/strutil/metrics.
+be found at https://pkg.go.dev/github.com/dorzzz/strutil/metrics.
 
 Included string metrics:
   - Hamming
@@ -17,8 +17,8 @@ Included string metrics:
 package strutil
 
 import (
-	"github.com/adrg/strutil/internal/ngram"
-	"github.com/adrg/strutil/internal/stringutil"
+	"github.com/dorzzz/strutil/internal/ngram"
+	"github.com/dorzzz/strutil/internal/stringutil"
 )
 
 // StringMetric represents a metric for measuring the similarity between
@@ -32,7 +32,7 @@ import (
 //  - Jaccard
 //  - Overlap coefficient
 //
-// For more information see https://pkg.go.dev/github.com/adrg/strutil/metrics.
+// For more information see https://pkg.go.dev/github.com/dorzzz/strutil/metrics.
 type StringMetric interface {
 	Compare(a, b string) float64
 }
