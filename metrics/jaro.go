@@ -46,9 +46,10 @@ func (m *Jaro) Compare(a, b string) float64 {
 	}
 
 	// Get matching runes.
-	halfLen := mathutil.Max(0, mathutil.Max(lenA, lenB)/2)
-	mrA := matchingRunes(a, b, halfLen)
-	mrB := matchingRunes(b, a, halfLen)
+	maxDistance := mathutil.Max(0, mathutil.Max(lenA, lenB)/2-1)
+
+	mrA := matchingRunes(a, b, maxDistance)
+	mrB := matchingRunes(b, a, maxDistance)
 
 	fmLen, smLen := len(mrA), len(mrB)
 	if fmLen == 0 || smLen == 0 {
