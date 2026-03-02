@@ -10,7 +10,8 @@ import (
 // OverlapCoefficient represents the overlap coefficient for measuring the
 // similarity between sequences. The metric is also know as the
 // Szymkiewicz-Simpson coefficient.
-//   For more information see https://en.wikipedia.org/wiki/Overlap_coefficient.
+//
+// For more information see https://en.wikipedia.org/wiki/Overlap_coefficient.
 type OverlapCoefficient struct {
 	// CaseSensitive specifies if the string comparison is case sensitive.
 	CaseSensitive bool
@@ -23,8 +24,9 @@ type OverlapCoefficient struct {
 // NewOverlapCoefficient returns a new overlap coefficient string metric.
 //
 // Default options:
-//   CaseSensitive: true
-//   NGramSize: 2
+//
+//	CaseSensitive: true
+//	NGramSize: 2
 func NewOverlapCoefficient() *OverlapCoefficient {
 	return &OverlapCoefficient{
 		CaseSensitive: true,

@@ -8,7 +8,8 @@ import (
 
 // Levenshtein represents the Levenshtein metric for measuring the similarity
 // between sequences.
-//   For more information see https://en.wikipedia.org/wiki/Levenshtein_distance.
+//
+// For more information see https://en.wikipedia.org/wiki/Levenshtein_distance.
 type Levenshtein struct {
 	// CaseSensitive specifies if the string comparison is case sensitive.
 	CaseSensitive bool
@@ -26,10 +27,11 @@ type Levenshtein struct {
 // NewLevenshtein returns a new Levenshtein string metric.
 //
 // Default options:
-//   CaseSensitive: true
-//   InsertCost: 1
-//   DeleteCost: 1
-//   ReplaceCost: 1
+//
+//	CaseSensitive: true
+//	InsertCost: 1
+//	DeleteCost: 1
+//	ReplaceCost: 1
 func NewLevenshtein() *Levenshtein {
 	return &Levenshtein{
 		CaseSensitive: true,

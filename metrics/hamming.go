@@ -6,7 +6,8 @@ import (
 
 // Hamming represents the Hamming metric for measuring the similarity
 // between sequences.
-//   For more information see https://en.wikipedia.org/wiki/Hamming_distance.
+//
+// For more information see https://en.wikipedia.org/wiki/Hamming_distance.
 type Hamming struct {
 	// CaseSensitive specifies if the string comparison is case sensitive.
 	CaseSensitive bool
@@ -15,7 +16,8 @@ type Hamming struct {
 // NewHamming returns a new Hamming string metric.
 //
 // Default options:
-//   CaseSensitive: true
+//
+//	CaseSensitive: true
 func NewHamming() *Hamming {
 	return &Hamming{
 		CaseSensitive: true,

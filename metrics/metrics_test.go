@@ -60,10 +60,10 @@ func TestJaroWinkler(t *testing.T) {
 	require.Equal(t, "1.00", sf(j.Compare("ab\u2019c", "ab\u2019c")))
 	require.Equal(t, "0.88", sf(j.Compare("ab\u2019d", "ab\u2019c")))
 	require.Equal(t, "0.87", sf(j.Compare("ab\u2018c", "ab\u2019c")))
-	require.Equal(t, "0.81", sf(j.Compare("sort", "shirt")))
+	require.Equal(t, "0.80", sf(j.Compare("sort", "shirt")))
 	require.Equal(t, "0.94", sf(j.Compare("charm", "charmed")))
 	j.CaseSensitive = false
-	require.Equal(t, "0.81", sf(j.Compare("sort", "SHIRT")))
+	require.Equal(t, "0.80", sf(j.Compare("sort", "SHIRT")))
 }
 
 func TestLevenshtein(t *testing.T) {

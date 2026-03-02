@@ -12,7 +12,6 @@ Included string metrics:
   - Sorensen-Dice
   - Jaccard
   - Overlap coefficient
-
 */
 package strutil
 
@@ -23,14 +22,14 @@ import (
 
 // StringMetric represents a metric for measuring the similarity between
 // strings. The metrics package implements the following string metrics:
-//  - Hamming
-//  - Jaro
-//  - Jaro-Winkler
-//  - Levenshtein
-//  - Smith-Waterman-Gotoh
-//  - Sorensen-Dice
-//  - Jaccard
-//  - Overlap coefficient
+//   - Hamming
+//   - Jaro
+//   - Jaro-Winkler
+//   - Levenshtein
+//   - Smith-Waterman-Gotoh
+//   - Sorensen-Dice
+//   - Jaccard
+//   - Overlap coefficient
 //
 // For more information see https://pkg.go.dev/github.com/adrg/strutil/metrics.
 type StringMetric interface {

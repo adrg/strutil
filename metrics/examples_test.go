@@ -64,20 +64,31 @@ func ExampleJaro() {
 	sim := jaro.Compare("sort", "shirt")
 	fmt.Printf("(sort, shirt) similarity: %.2f\n", sim)
 
+	jaro.CaseSensitive = false
+	sim = jaro.Compare("think", "TANK")
+	fmt.Printf("(think, TANK) similarity: %.2f\n", sim)
+
 	// Output:
 	// (sort, shirt) similarity: 0.78
+	// (think, TANK) similarity: 0.78
 }
 
 func ExampleJaroWinkler() {
 	jw := metrics.NewJaroWinkler()
 	sim := jw.Compare("sort", "shirt")
-	fmt.Printf("(sort, shirt) similarity: %.3f\n", sim)
+	fmt.Printf("(sort, shirt) similarity: %.2f\n", sim)
+
 	sim = jw.Compare("SN", "STFN")
-	fmt.Printf("(SN, STFN) similarity: %.3f\n", sim)
+	fmt.Printf("(SN, STFN) similarity: %.2f\n", sim)
+
+	jw.CaseSensitive = false
+	sim = jw.Compare("think", "TANK")
+	fmt.Printf("(think, TANK) similarity: %.2f\n", sim)
 
 	// Output:
-	// (sort, shirt) similarity: 0.805
-	// (SN, STFN) similarity: 0.583
+	// (sort, shirt) similarity: 0.80
+	// (SN, STFN) similarity: 0.58
+	// (think, TANK) similarity: 0.80
 }
 
 func ExampleSmithWatermanGotoh() {

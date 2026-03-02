@@ -9,19 +9,29 @@ import (
 
 // JaroWinkler represents the Jaro-Winkler metric for measuring the similarity
 // between sequences.
-//   For more information see https://en.wikipedia.org/wiki/Jaro-Winkler_distance.
+//
+// For more information see https://en.wikipedia.org/wiki/Jaro-Winkler_distance.
 type JaroWinkler struct {
 	// CaseSensitive specifies if the string comparison is case sensitive.
 	CaseSensitive bool
+
+	// Threshold specifies a Jaro similarity threshold (usually 0.7) at which
+	// to add the Winkler prefix bonus. If the similarity of the compared terms
+	// is less than the specified threshold, the Jaro similarity is returned
+	// without applying any score boost to it.
+	Threshold float64
 }
 
 // NewJaroWinkler returns a new Jaro-Winkler string metric.
 //
 // Default options:
-//   CaseSensitive: true
+//
+//	CaseSensitive: true
+//	Threshold: 0.7
 func NewJaroWinkler() *JaroWinkler {
 	return &JaroWinkler{
 		CaseSensitive: true,
+		Threshold:     0.7,
 	}
 }
 
@@ -41,17 +51,15 @@ func (m *JaroWinkler) Compare(a, b string) float64 {
 		lenPrefix = 4
 	}
 
+	// Calculate Jaro similarity.
 	jaro := NewJaro()
 	jaro.CaseSensitive = m.CaseSensitive
 
-	// Calculate Jaro similarity.
+	// If the Jaro similarity value is less than the configured threshold,
+	// do not apply the prefix bonus.
 	similarity := jaro.Compare(a, b)
-
-	// Apply a boost threshold of 0.7 and only add a prefix bonus if the strings are already similar
-	if similarity < 0.7 {
+	if similarity < m.Threshold {
 		return similarity
 	}
-
-	// Return similarity with prefix bonus.
 	return similarity + (0.1 * float64(lenPrefix) * (1.0 - similarity))
 }

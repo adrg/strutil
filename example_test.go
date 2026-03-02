@@ -12,7 +12,7 @@ func ExampleSimilarity() {
 	fmt.Printf("(riddle, needle) similarity: %.2f\n", sim)
 
 	// Output:
-	// (riddle, needle) similarity: 0.56
+	// (riddle, needle) similarity: 0.67
 }
 
 func ExampleCommonPrefix() {

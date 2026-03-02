@@ -8,7 +8,8 @@ import (
 
 // Jaccard represents the Jaccard index for measuring the similarity
 // between sequences.
-//   For more information see https://en.wikipedia.org/wiki/Jaccard_index.
+//
+// For more information see https://en.wikipedia.org/wiki/Jaccard_index.
 type Jaccard struct {
 	// CaseSensitive specifies if the string comparison is case sensitive.
 	CaseSensitive bool
@@ -21,8 +22,9 @@ type Jaccard struct {
 // NewJaccard returns a new Jaccard string metric.
 //
 // Default options:
-//   CaseSensitive: true
-//   NGramSize: 2
+//
+//	CaseSensitive: true
+//	NGramSize: 2
 func NewJaccard() *Jaccard {
 	return &Jaccard{
 		CaseSensitive: true,
