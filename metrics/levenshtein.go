@@ -80,15 +80,21 @@ func (m *Levenshtein) distance(a, b string) (int, int) {
 	}
 
 	// Initialize cost slice.
+	// The first column represents transforming the empty prefix of a into the
+	// first i+1 characters of b, which costs (i+1) insertions, so the border
+	// base case must be weighted by the insertion cost.
 	prevCol := make([]int, lenB+1)
 	for i := 0; i <= lenB; i++ {
-		prevCol[i] = i
+		prevCol[i] = i * m.InsertCost
 	}
 
 	// Calculate distance.
+	// col[0] represents transforming the first i+1 characters of a into the
+	// empty prefix of b, which costs (i+1) deletions, so the border base case
+	// must be weighted by the deletion cost.
 	col := make([]int, lenB+1)
 	for i := 0; i < lenA; i++ {
-		col[0] = i + 1
+		col[0] = (i + 1) * m.DeleteCost
 		for j := 0; j < lenB; j++ {
 			delCost := prevCol[j+1] + m.DeleteCost
 			insCost := col[j] + m.InsertCost
