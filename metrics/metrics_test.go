@@ -15,6 +15,9 @@ func sf(a float64) string {
 func TestHamming(t *testing.T) {
 	h := metrics.NewHamming()
 	require.Equal(t, 0, h.Distance("", ""))
+	require.Equal(t, "1.00", sf(h.Compare("", "")))
+	require.Equal(t, "0.00", sf(h.Compare("test", "")))
+	require.Equal(t, "0.00", sf(h.Compare("", "test")))
 	require.Equal(t, "0.75", sf(h.Compare("text", "test")))
 	require.Equal(t, "0.50", sf(h.Compare("once", "one")))
 	require.Equal(t, "1.00", sf(h.Compare("ab\u2019c", "ab\u2019c")))
@@ -69,6 +72,9 @@ func TestJaroWinkler(t *testing.T) {
 func TestLevenshtein(t *testing.T) {
 	l := metrics.NewLevenshtein()
 	require.Equal(t, 0, l.Distance("", ""))
+	require.Equal(t, "1.00", sf(l.Compare("", "")))
+	require.Equal(t, "0.00", sf(l.Compare("test", "")))
+	require.Equal(t, "0.00", sf(l.Compare("", "test")))
 	require.Equal(t, 4, l.Distance("test", ""))
 	require.Equal(t, 4, l.Distance("", "test"))
 	require.Equal(t, 0, l.Distance("ab\u2019c", "ab\u2019c"))
