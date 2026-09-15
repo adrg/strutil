@@ -46,6 +46,9 @@ func NewLevenshtein() *Levenshtein {
 // closer matches.
 func (m *Levenshtein) Compare(a, b string) float64 {
 	distance, maxLen := m.distance(a, b)
+	if maxLen == 0 {
+		return 1
+	}
 	return 1 - float64(distance)/float64(maxLen)
 }
 
