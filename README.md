@@ -108,6 +108,23 @@ fmt.Printf("%d\n", lev.Distance("graph", "giraffe")) // Output: 4
 More information and additional examples can be found on
 [pkg.go.dev](https://pkg.go.dev/github.com/adrg/strutil/metrics#Levenshtein).
 
+##### Unicode representation
+
+The Levenshtein implementation converts both input strings to `[]rune` before
+calculating the distance. For valid UTF-8 text, this means the comparison is
+performed over decoded Unicode code points rather than raw UTF-8 bytes.
+
+This distinction matters because a Unicode code point can occupy multiple UTF-8
+bytes, while a single user-perceived character can still contain multiple
+Unicode code points. Rune-based comparison therefore avoids byte-level distance,
+but it does not perform grapheme-cluster segmentation.
+
+Case-insensitive comparison is applied before the strings are converted to rune
+sequences.
+
+For additional background on how sequence representation affects edit-distance
+implementations, see [Levenshtein implementations and Unicode sequence units](https://www.levenshtein.net/levenshtein-implementations).
+
 #### Jaro
 
 ```go
